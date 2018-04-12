@@ -1,0 +1,12 @@
+version: '2'
+services:
+  certbot:
+    image: quay.io/letsencrypt/letsencrypt
+    container_name: certbot
+    command: certonly --standalone
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../../data/certbot/letsencrypt:/etc/letsencrypt
+      - ../../data/certbot/lib/letsencrypt:/var/lib/letsencrypt

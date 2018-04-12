@@ -1,0 +1,9 @@
+version: '2'
+services:
+  registry:
+    image: registry
+    container_name: registry
+    volumes:
+      - ../../data/registry:/var/lib/registry
+    ports:
+      - "5000:5000"

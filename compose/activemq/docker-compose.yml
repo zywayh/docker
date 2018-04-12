@@ -1,0 +1,28 @@
+version: '2'
+services:
+  activemq:
+    image: webcenter/activemq
+    container_name: activemq
+    volumes:
+      - ../../data/activemq:/data/activemq
+      - ../../data/activemq/log:/var/log/activemq
+    ports:
+      - 8161:8161
+      - 61616:61616
+      - 61613:61613
+    environment:
+      - 'ACTIVEMQ_NAME=activemq' 
+      - 'ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT=true' 
+      - 'ACTIVEMQ_ADMIN_LOGIN=admin'
+      - 'ACTIVEMQ_ADMIN_PASSWORD=admin' 
+      - 'ACTIVEMQ_WRITE_LOGIN=producer_login'
+      - 'ACTIVEMQ_WRITE_PASSWORD=admin' 
+      - 'ACTIVEMQ_READ_LOGIN=consumer_login'
+      - 'ACTIVEMQ_READ_PASSWORD=admin' 
+      - 'ACTIVEMQ_JMX_LOGIN=jmx_login'
+      - 'ACTIVEMQ_JMX_PASSWORD=admin' 
+#      - 'ACTIVEMQ_STATIC_TOPICS=topic1;topic2;topic3' 
+#      - 'ACTIVEMQ_STATIC_QUEUES=queue1;queue2;queue3' 
+      - 'ACTIVEMQ_MIN_MEMORY=1024'
+      - 'ACTIVEMQ_MAX_MEMORY=4096' 
+      - 'ACTIVEMQ_ENABLED_SCHEDULER=true' 

@@ -1,0 +1,62 @@
+version: '2'  
+services:  
+    elasticsearch:  
+        image: elasticsearch 
+        container_name: elasticsearch
+        volumes:  
+           - ../../data/elasticsearch/data/:/usr/share/elasticsearch/data  
+           - ../../data/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml  
+           - ../../data/elasticsearch/etc/security/limits.conf:/etc/security/limits.conf 
+        environment:  
+           - ES_CLUSTERNAME=elasticsearch  
+        command: elasticsearch  
+        ports:  
+           - "9200:9200"  
+           - "9300:9300"  
+  
+    kibana:   
+        image: kibana  
+        container_name: kibana  
+        ports:  
+           - "5601:5601"  
+        links:  
+           - elasticsearch:elasticsearch  
+  
+    redis1:  
+        image: redis  
+        container_name: redis1 
+        ports:  
+           - "6378:6379"  
+  
+    logstash-central:  
+        image: logstash  
+        container_name: logstash-central  
+        ports:  
+           - "25826:25826"  
+           - "25826:25826/udp"  
+        volumes:  
+           - ../../data/logstash/central:/conf  
+           - ../../data/logstash/data/:/data  
+        command: logstash -f /conf/central.conf  
+        links:  
+           - redis1:redis  
+           - elasticsearch:db  
+    logstash-agent:  
+        image: logstash  
+        container_name: logstash-agent  
+        ports:  
+           - "25827:25827"  
+           - "25827:25827/udp"  
+        volumes:  
+           - ../../data/logstash/agent:/conf  
+        command: logstash -f /conf/agent.conf  
+        links:  
+           - redis1:redis
+
+
+
+
+
+
+
+

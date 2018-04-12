@@ -1,0 +1,10 @@
+version: '2'
+services:
+  solr:
+    image: 865308221/ik.solr
+    container_name: solr
+    volumes:
+      - ../../data/solr/mycores:/opt/solr/server/solr/mycores
+      - ../../data/solr/classes:/opt/solr/server/solr-webapp/webapp/WEB-INF/classes
+    ports:
+      - "8983:8983"

@@ -1,0 +1,13 @@
+version: '2'
+services:
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ../../data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ../../data/nginx/conf/conf.d:/etc/nginx/conf.d
+      - ../../project:/project:ro
+      - ../../data/certbot/letsencrypt/archive:/ssl
+    ports:
+      - "80:80"
+      - "443:443"

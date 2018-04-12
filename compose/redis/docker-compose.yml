@@ -1,0 +1,11 @@
+version: '2'
+services:
+  redis:
+    image: redis
+    container_name: redis
+#    volumes:
+#      - ../../data/redis/data:/data
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly no", "--requirepass redis"]
+

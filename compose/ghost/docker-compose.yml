@@ -1,0 +1,15 @@
+version: '2'
+services:
+  ghost:
+    image: ghost
+    container_name: ghost
+    ports:
+      - "12368:2368"
+    environment:
+      database__client: mysql
+      database__connection__host: hengtaids.com
+      database__connection__user: root
+      database__connection__password: root
+      database__connection__database: ghost
+
+

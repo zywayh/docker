@@ -1,0 +1,10 @@
+version: '2'
+services:
+  jenkins:
+    image: jenkins 
+    container_name: jenkins
+    volumes:
+      - ../../data/jenkins:/var/jenkins_home
+    ports:
+      - "8090:8080"
+      - "50000:50000"

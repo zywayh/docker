@@ -1,0 +1,15 @@
+version: '2'
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    volumes:
+      - ../../data/mysql/conf:/etc/mysql/conf.d
+      - ../../data/mysql/data:/var/lib/mysql
+      - ../../data/mysql/log:/var/log/mysql
+      - ../../data/mysql/bak:/mysqlbak
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MAX_ALLOWED_PACKET=1024*1024*1024*1024

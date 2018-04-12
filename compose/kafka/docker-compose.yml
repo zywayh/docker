@@ -1,0 +1,13 @@
+version: '2'
+services:
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - 9092:9092
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.31.55
+      KAFKA_CREATE_TOPICS: "test:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: 192.168.31.55:2181,192.168.31.55:2182,192.168.31.55:2183
+      KAFKA_BROKER_ID: "1"
+      KAFKA_ADVERTISED_PORT: 9092

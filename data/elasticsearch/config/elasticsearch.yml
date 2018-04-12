@@ -1,0 +1,6 @@
+cluster.name: ${ES_CLUSTERNAME}  
+  
+node.name: ${HOSTNAME}  
+  
+network.host: 0.0.0.0  
+  

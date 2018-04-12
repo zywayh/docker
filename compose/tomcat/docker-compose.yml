@@ -1,0 +1,9 @@
+version: '2'
+services:
+  tomcat:
+    image: tomcat
+    container_name: tomcat
+    volumes:
+      - ../../data/tomcat/webapps:/usr/local/tomcat/webapps
+    ports:
+      - "8888:8080"

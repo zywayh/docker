@@ -1,0 +1,13 @@
+version: '2'
+services:
+  zbx:
+    image: 865308221/grails:3.3.1
+    container_name: zbx
+    volumes:
+      - ../../project/zbx/zbxbackstage:/app/src
+      - ../../resource/.gradle:/root/.gradle
+    ports:
+      - "8080:8080"
+    working_dir: /app/src
+    entrypoint: 'grails dev run-app'
+

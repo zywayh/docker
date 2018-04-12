@@ -1,0 +1,21 @@
+version: '2'
+services:
+  web:
+    image: 'gitlab/gitlab-ce:latest'
+    container_name: gitlab
+    hostname: 'zywayh.com'
+    volumes:
+      - '../../data/gitlab/config:/etc/gitlab'
+      - '../../data/gitlab/logs:/var/log/gitlab'
+      - '../../data/gitlab/data:/var/opt/gitlab'
+    ports:
+      - '9090:80'
+      - '2222:22'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://zywayh.com'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+
+
+
+

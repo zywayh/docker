@@ -1,0 +1,13 @@
+version: '2'
+services:
+  xiaomi:
+    image: 865308221/grails:3.3.2
+    container_name: xiaomi
+    volumes:
+      - ../../project/xiaomi:/app/src
+      - ../../resource/.gradle:/root/.gradle
+    ports:
+      - "8080:8080"
+    working_dir: /app/src
+    entrypoint: 'grails dev run-app'
+
