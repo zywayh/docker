@@ -1,7 +1,7 @@
 version: '2'
 services:
   mysql:
-    image: mysql
+    image: 865308221/mysql:5.7.18
     container_name: mysql
     volumes:
       - ../../data/mysql/conf:/etc/mysql/conf.d
