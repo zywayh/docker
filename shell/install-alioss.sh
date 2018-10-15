@@ -20,7 +20,7 @@ if [ $# -ge 3 ];then
     #ossfs <my-bucket> <my-mount-point> -ourl=<my-oss-endpoint>
     ossfs $1 /ossfs -ourl=http://oss-cn-beijing.aliyuncs.com
 else
-    echo "参数错误 <host> <pass> <database name> "
+    echo "参数错误 <bucket> <key> <secret> "
 fi
 
 
