@@ -16,7 +16,10 @@ if [ $# -ge 3 ];then
     chmod 640 /etc/passwd-ossfs
     
     echo "映射oss目录"
-    mkdir ossfs
+    
+if [ ! -d "/ossfs/" ];then
+    mkdir /ossfs
+fi
     #ossfs <my-bucket> <my-mount-point> -ourl=<my-oss-endpoint>
     ossfs $1 /ossfs -ourl=http://oss-cn-beijing.aliyuncs.com
 else
