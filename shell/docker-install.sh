@@ -14,14 +14,6 @@ if [ $? -ne 0 ]; then
   sudo yum -y install docker-ce
   # Step 4: 开启Docker服务
   sudo service docker start
-
-  echo "配置阿里docker镜像加速器-----------------------------------------------------------------"
-sudo mkdir -p /etc/docker
-sudo tee /etc/docker/daemon.json <<-'EOF'
-  { "registry-mirrors": ["https://1u162jg6.mirror.aliyuncs.com"] }
-EOF
-  sudo systemctl daemon-reload
-  sudo systemctl restart docker
 fi
 
 docker-compose -h
