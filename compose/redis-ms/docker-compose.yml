@@ -1,0 +1,29 @@
+version: '2'
+services:
+  redis1:
+    image: redis
+    container_name: redis1
+#    volumes:
+#      - ../../data/redis1/data:/data
+    ports:
+      - "6379:6379"
+    # command: ["redis-server", "--appendonly no", "--requirepass redis"]
+    command: ["redis-server", "--appendonly no"]
+  redis2:
+    image: redis
+    container_name: redis2
+#    volumes:
+#      - ../../data/redis2/data:/data
+    ports:
+      - "6378:6379"
+    # command: ["redis-server", "--appendonly no", "--requirepass redis"]
+    command: ["redis-server", "--appendonly no", "--slaveof 192.168.31.159 6379"]
+  redis3:
+    image: redis
+    container_name: redis3
+#    volumes:
+#      - ../../data/redis3/data:/data
+    ports:
+      - "6377:6379"
+    # command: ["redis-server", "--appendonly no", "--requirepass redis"]
+    command: ["redis-server", "--appendonly no", "--slaveof 192.168.31.159 6379"]

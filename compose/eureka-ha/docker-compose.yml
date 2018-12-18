@@ -1,0 +1,50 @@
+version: "3"
+services:
+  eureka1: 
+    image: springcloud/eureka
+    deploy:
+      replicas: 1   #定义 replicated 模式的服务的复本数量
+      update_config:
+        parallelism: 1    #每次更新复本数量
+        delay: 2s         #每次更新间隔
+      restart_policy:
+        condition: on-failure     #定义服务的重启条件
+    networks:
+      - eureka-net
+    ports:
+      - "8761:8761"
+    environment:
+      - spring.profiles.active=eureka1
+  eureka2:    
+    image: springcloud/eureka
+    deploy:
+      replicas: 1   #定义 replicated 模式的服务的复本数量
+      update_config:
+        parallelism: 1    #每次更新复本数量
+        delay: 2s       #每次更新间隔
+      restart_policy:
+        condition: on-failure     #定义服务的重启条件
+    networks:
+      - eureka-net
+    ports:
+      - "8762:8762"
+    environment:
+      - spring.profiles.active=eureka2
+  eureka3:   
+    image: springcloud/eureka
+    deploy:
+      replicas: 1   #定义 replicated 模式的服务的复本数量
+      update_config:
+        parallelism: 1    #每次更新复本数量
+        delay: 2s       #每次更新间隔
+      restart_policy:
+        condition: on-failure     #定义服务的重启条件
+    networks:
+      - eureka-net
+    ports:
+      - "8763:8763"
+    environment:
+      - spring.profiles.active=eureka3
+networks:
+  eureka-net:            #网络名称
+    driver: overlay

@@ -1,0 +1,14 @@
+version: '2'
+services:
+  centos:
+    image: centos
+    container_name: centos
+    volumes:
+      - ../../data/centos/root:/root
+    ports:
+      - "2222:22"
+
+
+
+
+

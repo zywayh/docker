@@ -1,0 +1,84 @@
+version: '3.2'
+services:
+  redis1:
+    image: redis
+    container_name: redis1
+    # volumes:
+      # - ../../data/redis1/data:/data
+    ports:
+      - 6379:6379
+  redis2:
+    image: redis
+    container_name: redis2
+    # volumes:
+      # - ../../data/redis2/data:/data
+    ports:
+      - 6378:6379
+    command: redis-server --slaveof redis1 6379
+  redis3:
+    image: redis
+    container_name: redis3
+    # volumes:
+      # - ../../data/redis3/data:/data
+    ports:
+      - 6377:6379
+    command: redis-server --slaveof redis1 6379
+  redis4:
+    image: redis
+    container_name: redis4
+    # volumes:
+      # - ../../data/redis3/data:/data
+    ports:
+      - 6376:6379
+    command: redis-server --slaveof redis1 6379
+  redis5:
+    image: redis
+    container_name: redis5
+    # volumes:
+      # - ../../data/redis3/data:/data
+    ports:
+      - 6375:6379
+    command: redis-server --slaveof redis1 6379
+  sentinel:
+    image: 865308221/sentinel
+    container_name: sentinel
+    environment:
+      # redis1 为links的masert的映射名称(配置文件中使用,有可以直接使用ip,不需要映射)
+      - MASTER_IP=masert
+      - SENTINEL_DOWN_AFTER=5000
+      - SENTINEL_FAILOVER=5000
+      - MASTER_PORT=6379
+      - SENTINEL_QUORUM=2
+    links:
+      - redis1:masert
+    ports:
+      - 26379:26379
+  sentinel1:
+    image: 865308221/sentinel
+    container_name: sentinel1
+    environment:
+      # redis1 为links的masert的映射名称(配置文件中使用,有可以直接使用ip,不需要映射)
+      - MASTER_IP=masert
+      - SENTINEL_DOWN_AFTER=5000
+      - SENTINEL_FAILOVER=5000
+      - MASTER_PORT=6379
+      - SENTINEL_QUORUM=2
+    links:
+      - redis1:masert
+    ports:
+      - 26379:26379
+  sentinel2:
+    image: 865308221/sentinel
+    container_name: sentinel2
+    environment:
+      # redis1 为links的masert的映射名称(配置文件中使用,有可以直接使用ip,不需要映射)
+      - MASTER_IP=masert
+      - SENTINEL_DOWN_AFTER=5000
+      - SENTINEL_FAILOVER=5000
+      - MASTER_PORT=6379
+      - SENTINEL_QUORUM=2
+    links:
+      - redis1:masert
+    ports:
+      - 26379:26379
+

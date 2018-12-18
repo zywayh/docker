@@ -1,0 +1,7 @@
+version: "3"
+services:
+  eureka: 
+    image: springcloud/eureka
+    container_name: eureka
+    ports:
+      - "8761:8761"
