@@ -1,2 +1,5 @@
 data/mysql/data
-
+data/gitlab
+data/jenkins
+data/activemq
+data/solr
