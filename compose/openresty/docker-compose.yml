@@ -1,0 +1,18 @@
+version: '3'
+services:
+  openresty:
+    image: openresty/openresty
+    container_name: openresty
+    volumes:
+      - ../../data/openresty/conf/conf.d:/etc/nginx/conf.d
+      - ../../data/openresty/logs:/usr/local/openresty/nginx/logs
+      - ../../data/certbot/letsencrypt/archive:/ssl
+      - ../../project:/project:ro
+    links: 
+      - redis
+    ports:
+      - "80:80"
+      - "443:443"
+  redis:
+    image: redis
+

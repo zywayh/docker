@@ -3,3 +3,5 @@ data/gitlab
 data/jenkins
 data/activemq
 data/solr
+data/nginx
+data/openresty
