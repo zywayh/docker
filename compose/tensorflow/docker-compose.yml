@@ -1,0 +1,9 @@
+version: '3'
+services:
+  tensorflow:
+    image: tensorflow/tensorflow
+    container_name: tensorflow
+    volumes:
+      - ../../data/tensorflow/:/data
+    ports:
+      - 8888:8888
