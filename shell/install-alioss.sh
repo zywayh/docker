@@ -4,8 +4,9 @@ if [ $# -ge 3 ];then
     echo "安装wget工具"
     yum install wget -y
     
+    #文档地址 https://help.aliyun.com/document_detail/32196.html?spm=a2c4g.11174283.3.8.74c37da29O7Tso
     echo "下载ossfs镜像文件"
-    wget http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/32196/cn_zh/1527232195135/ossfs_1.80.5_centos7.0_x86_64.rpm
+    wget http://gosspublic.alicdn.com/ossfs/ossfs_1.80.5_centos7.0_x86_64.rpm?spm=a2c4g.11186623.2.13.1a4673583Mej1u&file=ossfs_1.80.5_centos7.0_x86_64.rpm
     
     echo "安装ossfs镜像文件"
     sudo yum localinstall ossfs_1.80.5_centos7.0_x86_64.rpm
