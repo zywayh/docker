@@ -4,6 +4,8 @@ services:
     image: tensorflow/tensorflow
     container_name: tensorflow
     volumes:
-      - ../../data/tensorflow/:/data
+      - ../../data/tensorflow/data:/data
+      - ../../data/tensorflow/tmp:/tmp
+      - ../../data/tensorflow/models:/usr/local/lib/python2.7/dist-packages/tensorflow/models
     ports:
       - 8888:8888
