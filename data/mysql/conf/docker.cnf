@@ -14,7 +14,7 @@ key_buffer_size = 2018M
 
 #连接排队列表总数
 back_log = 200
-max_allowed_packet = 20M
+max_allowed_packet = 1024M
 
 #打开表缓存总数,可以避免频繁的打开数据表产生的开销
 table_open_cache = 512
@@ -32,6 +32,8 @@ myisam_sort_buffer_size = 64M
 #query_cache_size = 512M
 
 #设置超时时间,能避免长连接
+#show global variables like 'wait_timeout'; 
+#
 wait_timeout=604800
 
 #记录慢查询,然后对慢查询一一优化
