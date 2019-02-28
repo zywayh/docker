@@ -6,7 +6,7 @@ services:
     volumes:
       - ../../data/mysql/conf:/etc/mysql/conf.d
 #      - ../../data/mysql/data:/var/lib/mysql
-#      - ../../data/mysql/log:/var/log/mysql
+      - ../../data/mysql/log:/var/log/mysql
 #      - ../../data/mysql/bak:/mysqlbak
     ports:
       - 3306:3306
