@@ -7,3 +7,8 @@ services:
       - "8761:8761"
     environment:
       - server.port=8761
+      - eureka.client.register-with-eureka=false
+      - eureka.client.fetch-registry=false
+      - spring.profiles=peer1
+      - eureka.instance.instance-id=springcloud-eurekaserver-A8-118
+      - eureka.instance.preferIpAddress=false
