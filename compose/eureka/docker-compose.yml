@@ -5,3 +5,5 @@ services:
     container_name: eureka
     ports:
       - "8761:8761"
+    environment:
+      - server.port=8761

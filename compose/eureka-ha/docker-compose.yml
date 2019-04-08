@@ -1,50 +1,33 @@
 version: "3"
 services:
-  eureka1: 
+  eureka1:
     image: springcloud/eureka
-    deploy:
-      replicas: 1   #定义 replicated 模式的服务的复本数量
-      update_config:
-        parallelism: 1    #每次更新复本数量
-        delay: 2s         #每次更新间隔
-      restart_policy:
-        condition: on-failure     #定义服务的重启条件
-    networks:
-      - eureka-net
     ports:
       - "8761:8761"
     environment:
+      - server.port=8761
       - spring.profiles.active=eureka1
+      - eureka.client.registerWithEureka:false
+      - eureka.instance.hostname=eureka1
+      - eureka.client.serviceUrl.defaultZone=http://eureka2:8761/eureka/,http://eureka3:8761/eureka/
   eureka2:    
     image: springcloud/eureka
-    deploy:
-      replicas: 1   #定义 replicated 模式的服务的复本数量
-      update_config:
-        parallelism: 1    #每次更新复本数量
-        delay: 2s       #每次更新间隔
-      restart_policy:
-        condition: on-failure     #定义服务的重启条件
-    networks:
-      - eureka-net
     ports:
-      - "8762:8762"
+      - "8762:8761"
     environment:
+      - server.port=8761
       - spring.profiles.active=eureka2
+      - eureka.client.registerWithEureka:false
+      - eureka.instance.hostname=eureka2
+      - eureka.client.serviceUrl.defaultZone=http://eureka1:8761/eureka/,http://eureka3:8761/eureka/
   eureka3:   
     image: springcloud/eureka
-    deploy:
-      replicas: 1   #定义 replicated 模式的服务的复本数量
-      update_config:
-        parallelism: 1    #每次更新复本数量
-        delay: 2s       #每次更新间隔
-      restart_policy:
-        condition: on-failure     #定义服务的重启条件
-    networks:
-      - eureka-net
     ports:
-      - "8763:8763"
+      - "8763:8761"
     environment:
+      - server.port=8761
       - spring.profiles.active=eureka3
-networks:
-  eureka-net:            #网络名称
-    driver: overlay
+      - eureka.client.registerWithEureka:false
+      - eureka.instance.hostname=eureka3
+      - eureka.client.serviceUrl.defaultZone=http://eureka1:8761/eureka/,http://eureka2:8761/eureka/
+
