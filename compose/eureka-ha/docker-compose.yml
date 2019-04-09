@@ -9,7 +9,6 @@ services:
       - server.port=8761
       - spring.profiles.active=eureka1
       - eureka.server.waitTimeInMsWhenSyncEmpty=0
-      - eureka.server.renewalPercentThreshold=0.49
       - eureka.client.registerWithEureka=false
       - eureka.client.fetchRegistry=false
       - eureka.instance.hostname=eureka1
@@ -24,7 +23,6 @@ services:
       - server.port=8761
       - spring.profiles.active=eureka2
       - eureka.server.waitTimeInMsWhenSyncEmpty=0
-      - eureka.server.renewalPercentThreshold=0.49
       - eureka.client.registerWithEureka=false
       - eureka.client.fetchRegistry=false
       - eureka.instance.hostname=eureka2
@@ -39,7 +37,6 @@ services:
       - server.port=8761
       - spring.profiles.active=eureka3
       - eureka.server.waitTimeInMsWhenSyncEmpty=0
-      - eureka.server.renewalPercentThreshold=0.49
       - eureka.client.registerWithEureka=false
       - eureka.client.fetchRegistry=false
       - eureka.instance.hostname=eureka3
