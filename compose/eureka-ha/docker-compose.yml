@@ -9,8 +9,8 @@ services:
       - server.port=8761
       - spring.profiles.active=eureka1
       - eureka.server.waitTimeInMsWhenSyncEmpty=0
-      - eureka.client.registerWithEureka=false
-      - eureka.client.fetchRegistry=false
+      - eureka.client.registerWithEureka=true
+      - eureka.client.fetchRegistry=true
       - eureka.instance.hostname=eureka1
       - eureka.instance.preferIpAddress=false
       - eureka.client.serviceUrl.defaultZone=http://eureka2:8761/eureka/,http://eureka3:8761/eureka/
@@ -23,8 +23,8 @@ services:
       - server.port=8761
       - spring.profiles.active=eureka2
       - eureka.server.waitTimeInMsWhenSyncEmpty=0
-      - eureka.client.registerWithEureka=false
-      - eureka.client.fetchRegistry=false
+      - eureka.client.registerWithEureka=true
+      - eureka.client.fetchRegistry=true
       - eureka.instance.hostname=eureka2
       - eureka.instance.preferIpAddress=false
       - eureka.client.serviceUrl.defaultZone=http://eureka1:8761/eureka/,http://eureka3:8761/eureka/
@@ -37,8 +37,8 @@ services:
       - server.port=8761
       - spring.profiles.active=eureka3
       - eureka.server.waitTimeInMsWhenSyncEmpty=0
-      - eureka.client.registerWithEureka=false
-      - eureka.client.fetchRegistry=false
+      - eureka.client.registerWithEureka=true
+      - eureka.client.fetchRegistry=true
       - eureka.instance.hostname=eureka3
       - eureka.instance.preferIpAddress=false
       - eureka.client.serviceUrl.defaultZone=http://eureka1:8761/eureka/,http://eureka2:8761/eureka/
