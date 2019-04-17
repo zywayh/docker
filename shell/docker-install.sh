@@ -36,7 +36,7 @@ if [ $? -ne 0 ]; then
   fi
 fi
 
-chown -R 8983:root data/solr/mycores/
+chown -R 8983:root ../data/solr/mycores/
 
 if [ -n "docker" ] && [ -n "docker-compose" ]; then
   rm -rf ./contos7.x-docker-install.sh
