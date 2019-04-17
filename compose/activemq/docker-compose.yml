@@ -6,6 +6,7 @@ services:
     volumes:
       - ../../data/activemq:/data/activemq
       - ../../data/activemq/log:/var/log/activemq
+      - /etc/localtime:/etc/localtime
     ports:
       - 8161:8161
       - 61616:61616

@@ -4,12 +4,11 @@ services:
     image: mongo
     container_name: mongo
     volumes:
-      - ./data/mongo/rep1/conf:/data/configdb
-      - ./data/mongo/rep1/data:/data/db
-      - ./data/mongo/rep1/bak:/data/bak
+      - ../../data/mongo/rep1/conf:/data/configdb
+      - ../../data/mongo/rep1/data:/data/db
+      - ../../data/mongo/rep1/bak:/data/bak
       - /etc/localtime:/etc/localtime
     ports:
       - "27017:27017"
     command: ["mongod", "--config", "/data/configdb/mongod.conf"]
 
-    
