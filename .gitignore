@@ -5,3 +5,4 @@ data/activemq
 data/solr
 data/nginx
 data/openresty
+data/tomcat

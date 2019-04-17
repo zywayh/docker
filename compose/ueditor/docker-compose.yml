@@ -1,0 +1,9 @@
+version: '2'
+services:
+  tomcat:
+    image: ueditor.baidu.tomcat
+    container_name: ueditor
+    volumes:
+      - ../../data/ueditor/WEB-INF/classes/OSSKey.properties:/usr/local/tomcat/webapps/ueditor/WEB-INF/classes/OSSKey.properties
+    ports:
+      - "8888:8080"
