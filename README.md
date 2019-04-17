@@ -1,6 +1,13 @@
 # docker
 docker 服务器测试环境搭建使用的整个目录结构及可能使用到的脚本文件
 
+# 快速使用
+1：git pull https://github.com/zywayh/docker.git
+2：cd ./docker/shell
+3：执行脚本  ./docker-install.sh  安装docker和docker-compose
+4：进入compose，找到想使用的服务，进入文件夹
+5：执行命令 docker-compose up -d 启动服务   docker-compose down 关闭服务
+
 # 目录结构
 目录|简介
 ---|---
