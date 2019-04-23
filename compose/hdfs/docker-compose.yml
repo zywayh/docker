@@ -1,0 +1,30 @@
+version: "2"
+services:
+  namenode:
+    image: singularities/hadoop
+    container_name: hdfs_name
+    command: start-hadoop namenode
+    hostname: namenode
+    volumes:
+      - ../../data/hdfs/namenode/hdfs:/opt/hdfs/
+    environment:
+      HDFS_USER: hdfsuser
+    ports:
+      - "8020:8020"
+      - "14000:14000"
+      - "50070:50070"
+      - "50075:50075"
+      - "10020:10020"
+      - "13562:13562"
+      - "19888:19888"
+  datanode:
+    image: singularities/hadoop
+    container_name: hdfs_data
+    command: start-hadoop datanode namenode
+    hostname: 192.168.0.149
+    volumes:
+      - ../../data/hdfs/datanode/hdfs:/opt/hdfs/
+    environment:
+      HDFS_USER: hdfsuser
+    links:
+      - namenode
