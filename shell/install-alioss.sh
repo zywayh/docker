@@ -22,7 +22,7 @@ if [ ! -d "/ossfs/" ];then
     mkdir /ossfs
 fi
     #ossfs <my-bucket> <my-mount-point> -ourl=<my-oss-endpoint>
-    ossfs $1 /ossfs -ourl=http://oss-cn-beijing.aliyuncs.com
+    ossfs $1 /ossfs -ourl=http://oss-cn-beijing-internal.aliyuncs.com
 else
     echo "参数错误 <bucket> <key> <secret> "
 fi

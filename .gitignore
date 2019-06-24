@@ -7,3 +7,6 @@ data/nginx
 data/openresty
 data/tomcat
 data/hdfs
+data/elasticsearch/data
+html/ht_wx
+data/mongo/rep1/data

@@ -3,12 +3,27 @@ services:
   mongo: 
     image: mongo
     container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
-      - ../../data/mongo/rep1/conf:/data/configdb
       - ../../data/mongo/rep1/data:/data/db
       - ../../data/mongo/rep1/bak:/data/bak
-      - /etc/localtime:/etc/localtime
+#      - /etc/localtime:/etc/localtime
     ports:
       - "27017:27017"
-    command: ["mongod", "--config", "/data/configdb/mongod.conf"]
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    links:
+      - mongo
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+
+
+
+
 
