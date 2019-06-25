@@ -4,10 +4,10 @@ services:
         image: elasticsearch:7.1.1
         container_name: elasticsearch
         volumes:  
-           # - ../../data/elasticsearch/data/:/usr/share/elasticsearch/data
+           - ../../data/elasticsearch/data/:/usr/share/elasticsearch/data
            - ../../data/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml  
-           # - ../../data/elasticsearch/etc/security/limits.conf:/etc/security/limits.conf 
-           # - ../../data/elasticsearch/plugins:/usr/share/elasticsearch/plugins 
+           - ../../data/elasticsearch/etc/security/limits.conf:/etc/security/limits.conf 
+           - ../../data/elasticsearch/plugins:/usr/share/elasticsearch/plugins 
         environment:  
            - ES_CLUSTERNAME=elasticsearch  
         command: elasticsearch  
