@@ -1,5 +1,28 @@
 #!/bin/bash
-message="@所有人 大家该喝水了，每小时200毫升水，让你的肾更健康，让你的容颜更美丽！"
+messages[0]="每天傍晚，这群白鹤都会到这里喝水，人们从来不去打扰它们。"
+messages[1]="晌午的时候，鹿群都聚拢在河边喝水。"
+messages[2]="天气热得人们口干舌燥，都想喝水。"
+messages[3]="我先吃生果，而后喝水，果然拉肚子了。"
+messages[4]="医生无可奈何，倒了一杯水，说：＂请喝水吧。"
+messages[5]="饮水思源喝水的时候想起水是从哪儿来的。"
+messages[6]="因为口渴了，所以就想喝水。"
+messages[7]="天上的云彩变化多端，有时像一匹骏马在奔驰，有时像一条狗在摆头摇尾，有时像一只鸡在找食，有时又像一头大象在喝水。"
+messages[8]="一只小羊在河边喝水，狼见到后，便想找一个名正言顺的借口吃掉他。于是他跑到上游，恶狠狠地说小羊把河水搅浑浊了，使他喝不到清水。"
+messages[9]="多喝水。清洗润滑你的身体。这也有助于你的皮肤保持湿润、光滑，富有青春活力。水是最有益于健康的饮料。"
+messages[10]="我们应该自觉的向水学习，学习水的精神、水的品格，涵养柔软的心性，修炼谦卑的美德，效法水的无私善行，让自己的身心达到至善至美的境界。"
+messages[11]="你可曾留意那淙淙的小溪，涓之细，行之轻；如清晨间淡淡的鸟语，似傍晚中迷蒙的霞光。可它生生不息，磨去了多少奇锋利石的锐气！那是一种毅力！"
+messages[12]="多喝水，多吃饭，你会发现你越来越胖。"
+messages[13]="使劲喝水，把公司喝穷。"
+messages[14]="你再喝水，公司就要被你喝倒闭了。"
+messages[15]="今天喝水冠军，奖励100个俯卧撑。"
+messages[16]="哈哈哈！哈哈哈！哈哈哈！哈哈哈！哈哈哈！哈哈哈！哈哈哈！哈哈哈！哈哈哈！哈哈哈！哈哈哈！"
+messages[17]="喝水！喝水！喝水！喝水！喝水！喝水！喝水！喝水！喝水！喝水！喝水！喝水！喝水！喝水！喝水！喝水！喝水！喝水！"
+messages[18]="喝水吃饭！喝水吃饭！喝水吃饭！喝水吃饭！喝水吃饭！喝水吃饭！喝水吃饭！喝水吃饭！喝水吃饭！喝水吃饭！"
+messages[19]="在不喝水，你就上天堂了。在不喝水，你对象都不要你了。"
+messages[20]="喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！"
+
 URL=https://oapi.dingtalk.com/robot/send?access_token=a30323bc886c3c94713bbf606d986f8089d5232bdbe223c6818b974c54c8fcd9
-result=$(curl -H "Content-type: application/json" -X POST -s -w %{http_code} -d '{"msgtype": "text","text": {"content": "'${message}'"}}' ${URL})
+result=$(curl -H "Content-type: application/json" -X POST -s -w %{http_code} -d '{"msgtype": "text","text": {"content": "'@所有人' ${URL})
+result1=$(curl -H "Content-type: application/json" -X POST -s -w %{http_code} -d '{"msgtype": "text","text": {"content": "'${messages[$[RANDOM% ${#messages[*]}]]}'"}}' ${URL})
 echo $result
+echo $result1
