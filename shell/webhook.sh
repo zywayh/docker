@@ -22,7 +22,7 @@ messages[19]="在不喝水，你就上天堂了。在不喝水，你对象都不
 messages[20]="喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！喝水减肥！"
 
 URL=https://oapi.dingtalk.com/robot/send?access_token=a30323bc886c3c94713bbf606d986f8089d5232bdbe223c6818b974c54c8fcd9
-result=$(curl -H "Content-type: application/json" -X POST -s -w %{http_code} -d '{"msgtype": "text","text": {"content": "'@所有人' ${URL})
+result=$(curl -H "Content-type: application/json" -X POST -s -w %{http_code} -d '{"msgtype": "text","text": {"content": "'@所有人'"}}' ${URL})
 result1=$(curl -H "Content-type: application/json" -X POST -s -w %{http_code} -d '{"msgtype": "text","text": {"content": "'${messages[$[RANDOM% ${#messages[*]}]]}'"}}' ${URL})
 echo $result
 echo $result1
