@@ -2,10 +2,10 @@ cluster.name: ${ES_CLUSTERNAME}
   
 node.name: ${HOSTNAME}  
   
-network.host: 0.0.0.0  
+network.host: 0.0.0.0
   
 http.cors.enabled: true
 
 http.cors.allow-origin: "*"
 
-cluster.initial_master_nodes: ["node-1"]
+# cluster.initial_master_nodes: ["node-1"]

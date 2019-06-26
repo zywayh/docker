@@ -1,20 +1,19 @@
-version: '3'  
-services:  
-    elasticsearch:  
-        image: elasticsearch:7.1.1
+version: '2'
+services:
+    elasticsearch:
+        image: elasticsearch:6.6.0
         container_name: elasticsearch
-        volumes:  
+        volumes:
            - ../../data/elasticsearch/data/:/usr/share/elasticsearch/data
-           - ../../data/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml  
-           - ../../data/elasticsearch/etc/security/limits.conf:/etc/security/limits.conf 
-           - ../../data/elasticsearch/plugins:/usr/share/elasticsearch/plugins 
+           - ../../data/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+           - ../../data/elasticsearch/etc/security/limits.conf:/etc/security/limits.conf
+           - ../../data/elasticsearch/plugins:/usr/share/elasticsearch/plugins
         environment:  
-           - ES_CLUSTERNAME=elasticsearch  
-        command: elasticsearch  
+           - ES_CLUSTERNAME=elasticsearch
+        command: elasticsearch
         ports:  
-           - "9200:9200"  
-           - "9300:9300"  
-
+           - "9200:9200"
+           - "9300:9300"
 
 
 
