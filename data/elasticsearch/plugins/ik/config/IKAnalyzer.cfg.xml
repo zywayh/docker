@@ -4,11 +4,11 @@
 	<comment>IK Analyzer 扩展配置</comment>
 	<!--用户可以在这里配置自己的扩展字典 -->
 	<entry key="ext_dict">
-		<!-- extra_main.dic;main.dic; --> 
+		extra_main.dic;main.dic;my.dic;
 	</entry>
 	 <!--用户可以在这里配置自己的扩展停止词字典-->
 	<entry key="ext_stopwords">
-		stopword.dic;my.dic;
+		stopword.dic;preposition.dic;surname.dic;suffix.dic;extra_single_word.dic;extra_single_word_low_freq.dic;extra_single_word_full.dic;extra_stopword.dic;
 	</entry>
 	<!--用户可以在这里配置远程扩展字典 -->
 	<!-- <entry key="remote_ext_dict">words_location</entry> -->

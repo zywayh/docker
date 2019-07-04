@@ -4,6 +4,9 @@ if [ $# -ge 3 ];then
     echo "安装wget工具"
     yum install wget -y
     
+    echo "安装mailcap，使生成/etc/mime.types，上传文件时以区分不同文件的不同请求头"
+    sudo yum install mailcap
+    
     #文档地址 https://help.aliyun.com/document_detail/32196.html?spm=a2c4g.11174283.3.8.74c37da29O7Tso
     echo "下载ossfs镜像文件"
     wget http://gosspublic.alicdn.com/ossfs/ossfs_1.80.5_centos7.0_x86_64.rpm

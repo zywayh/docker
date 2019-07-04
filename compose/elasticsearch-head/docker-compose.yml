@@ -1,0 +1,12 @@
+version: '2'
+services:
+    elasticsearch:
+        image: mobz/elasticsearch-head:5
+        container_name: elasticsearch-head
+        ports:  
+           - 9100:9100
+
+
+
+
+
