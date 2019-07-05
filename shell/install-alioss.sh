@@ -5,6 +5,11 @@ if [ $# -ge 3 ];then
     yum install wget -y
     
     echo "安装mailcap，使生成/etc/mime.types，上传文件时以区分不同文件的不同请求头"
+    # https://help.aliyun.com/document_detail/32197.html?spm=a2c4g.11186623.6.724.3bff6ea3uoTFvc#title-h54-e3n-a2v
+    # ossfs通过查询/etc/mime.types中的内容来确定文件的Content-Type，请检查这个文件是否存在，如果不存在，则需要添加：
+    # 对于Ubuntu可以通过sudo apt-get install mime-support来添加。
+    # 对于CentOS可以通过sudo yum install mailcap来添加。
+    # 也可以手动添加，每种格式一行，每行格式为：application/javascript js。
     sudo yum install mailcap
     
     #文档地址 https://help.aliyun.com/document_detail/32196.html?spm=a2c4g.11174283.3.8.74c37da29O7Tso
