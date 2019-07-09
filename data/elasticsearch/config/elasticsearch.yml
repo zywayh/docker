@@ -1,10 +1,13 @@
-cluster.name: ${ES_CLUSTERNAME}  
+cluster:
+  name: ${ES_CLUSTERNAME}  
   
-node.name: ${HOSTNAME}  
+node:
+  name: ${HOSTNAME}  
   
-network.host: 0.0.0.0
+network:
+  host: 0.0.0.0
   
-http.cors.enabled: true
-
-http.cors.allow-origin: "*"
-
+http:
+  cors:
+    enabled: true
+    allow-origin: "*"
