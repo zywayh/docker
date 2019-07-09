@@ -8,4 +8,3 @@ http.cors.enabled: true
 
 http.cors.allow-origin: "*"
 
-# cluster.initial_master_nodes: ["node-1"]
