@@ -29,6 +29,9 @@ if [ $? -ne 0 ]; then
     fi
     mv docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
+    
+    echo "配置开机启动"
+    echo $PWD/rc.sh >> /etc/rc.d/rc.local 
   else
     if [ ! -x "/usr/local/bin/docker-compose" ]; then
       chmod +x /usr/local/bin/docker-compose
