@@ -31,6 +31,7 @@ if [ $? -ne 0 ]; then
     chmod +x /usr/local/bin/docker-compose
     
     echo "配置开机启动"
+    chmod +x ./rc.sh
     echo $PWD/rc.sh >> /etc/rc.d/rc.local 
   else
     if [ ! -x "/usr/local/bin/docker-compose" ]; then
