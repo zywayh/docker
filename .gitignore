@@ -10,3 +10,4 @@ data/hdfs
 data/elasticsearch/data
 html/ht_wx
 data/mongo/rep1/data
+data/nexus/data

@@ -11,5 +11,6 @@ services:
       - 53:53
       - 5380:8080
     environment:
+      - TZ=Asia/Shanghai
       - HTTP_USER=foo
       - HTTP_PASS=bar

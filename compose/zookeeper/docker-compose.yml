@@ -5,3 +5,5 @@ services:
     container_name: zk
     ports:
       - 2181:2181
+    environment:
+      - TZ=Asia/Shanghai

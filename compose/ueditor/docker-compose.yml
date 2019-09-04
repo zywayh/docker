@@ -7,3 +7,5 @@ services:
       - ../../data/ueditor/WEB-INF/classes/OSSKey.properties:/usr/local/tomcat/webapps/ueditor/WEB-INF/classes/OSSKey.properties
     ports:
       - "8888:8080"
+    environment:
+      - TZ=Asia/Shanghai

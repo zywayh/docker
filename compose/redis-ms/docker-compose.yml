@@ -9,6 +9,8 @@ services:
       - "6379:6379"
     # command: ["redis-server", "--appendonly no", "--requirepass redis"]
     command: ["redis-server", "--appendonly no"]
+    environment:
+      - TZ=Asia/Shanghai
   redis2:
     image: redis
     container_name: redis2
@@ -18,6 +20,8 @@ services:
       - "6378:6379"
     # command: ["redis-server", "--appendonly no", "--requirepass redis"]
     command: ["redis-server", "--appendonly no", "--slaveof 192.168.31.159 6379"]
+    environment:
+      - TZ=Asia/Shanghai
   redis3:
     image: redis
     container_name: redis3
@@ -27,3 +31,5 @@ services:
       - "6377:6379"
     # command: ["redis-server", "--appendonly no", "--requirepass redis"]
     command: ["redis-server", "--appendonly no", "--slaveof 192.168.31.159 6379"]
+    environment:
+      - TZ=Asia/Shanghai

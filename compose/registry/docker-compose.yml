@@ -7,3 +7,5 @@ services:
       - ../../data/registry:/var/lib/registry
     ports:
       - "5000:5000"
+    environment:
+      - TZ=Asia/Shanghai

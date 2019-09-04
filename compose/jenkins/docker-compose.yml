@@ -8,3 +8,5 @@ services:
     ports:
       - "8090:8080"
       - "50000:50000"
+    environment:
+      - TZ=Asia/Shanghai

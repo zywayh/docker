@@ -3,7 +3,8 @@ services:
   mongo: 
     image: mongo
     container_name: mongo
-    environment:
+    environment
+      - TZ=Asia/Shanghai
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
@@ -20,6 +21,7 @@ services:
     ports:
       - 8081:8081
     environment:
+      - TZ=Asia/Shanghai
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
 

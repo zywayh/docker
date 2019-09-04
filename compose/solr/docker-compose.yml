@@ -8,3 +8,5 @@ services:
       - ../../data/solr/classes:/opt/solr/server/solr-webapp/webapp/WEB-INF/classes
     ports:
       - "8983:8983"
+    environment:
+      - TZ=Asia/Shanghai

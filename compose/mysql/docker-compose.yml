@@ -11,5 +11,6 @@ services:
     ports:
       - 3306:3306
     environment:
+      - TZ=Asia/Shanghai
       - MYSQL_ROOT_PASSWORD=root
     command: --default-authentication-plugin=mysql_native_password

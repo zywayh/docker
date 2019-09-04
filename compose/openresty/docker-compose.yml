@@ -13,6 +13,10 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    environment:
+      - TZ=Asia/Shanghai
   redis:
     image: redis
+    environment:
+      - TZ=Asia/Shanghai
 

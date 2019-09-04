@@ -1,0 +1,18 @@
+version: '2'
+services:
+  nexus3:
+    image: sonatype/nexus3
+    container_name: nexus3
+    ports:
+      - "8081:8081"
+    volumes:
+      - ../../data/nexus/data:/nexus-data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10k"
+        max-file: "10"
+    restart: always
+
+
+

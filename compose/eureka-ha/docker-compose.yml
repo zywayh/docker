@@ -6,6 +6,7 @@ services:
     ports:
       - "8761:8761"
     environment:
+      - TZ=Asia/Shanghai
       - eureka.instance.hostname=eureka1
       - eureka.client.serviceUrl.defaultZone=http://eureka2:8761/eureka/,http://eureka3:8761/eureka/
   eureka2:
@@ -14,6 +15,7 @@ services:
     ports:
       - "8762:8761"
     environment:
+      - TZ=Asia/Shanghai
       - eureka.instance.hostname=eureka2
       - eureka.client.serviceUrl.defaultZone=http://eureka1:8761/eureka/,http://eureka3:8761/eureka/
   eureka3:
@@ -22,6 +24,7 @@ services:
     ports:
       - "8763:8761"
     environment:
+      - TZ=Asia/Shanghai
       - eureka.instance.hostname=eureka3
       - eureka.client.serviceUrl.defaultZone=http://eureka1:8761/eureka/,http://eureka2:8761/eureka/
 

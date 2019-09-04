@@ -8,4 +8,5 @@ services:
     ports:
       - "6379:6379"
     command: ["redis-server", "--appendonly no", "--requirepass redis"]
-
+    environment:
+      - TZ=Asia/Shanghai

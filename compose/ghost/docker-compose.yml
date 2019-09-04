@@ -6,6 +6,7 @@ services:
     ports:
       - "12368:2368"
     environment:
+      - TZ=Asia/Shanghai
       database__client: mysql
       database__connection__host: hengtaids.com
       database__connection__user: root

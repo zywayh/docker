@@ -7,7 +7,8 @@ services:
            - ../../data/elasticsearch/data/:/usr/share/elasticsearch/data  
            - ../../data/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml  
            - ../../data/elasticsearch/etc/security/limits.conf:/etc/security/limits.conf 
-        environment:  
+        environment: 
+           - TZ=Asia/Shanghai
            - ES_CLUSTERNAME=elasticsearch  
         command: elasticsearch  
         ports:  
@@ -21,13 +22,17 @@ services:
            - "5601:5601"  
         links:  
            - elasticsearch:elasticsearch  
+        environment:
+           - TZ=Asia/Shanghai
   
     redis1:  
         image: redis  
         container_name: redis1 
         ports:  
            - "6378:6379"  
-  
+        environment:
+           - TZ=Asia/Shanghai
+
     logstash-central:  
         image: logstash  
         container_name: logstash-central  
@@ -41,6 +46,9 @@ services:
         links:  
            - redis1:redis  
            - elasticsearch:db  
+        environment:
+           - TZ=Asia/Shanghai
+
     logstash-agent:  
         image: logstash  
         container_name: logstash-agent  
@@ -52,7 +60,8 @@ services:
         command: logstash -f /conf/agent.conf  
         links:  
            - redis1:redis
-
+        environment:
+           - TZ=Asia/Shanghai
 
 
 

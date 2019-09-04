@@ -9,3 +9,5 @@ services:
       - ../../data/tensorflow/models:/usr/local/lib/python2.7/dist-packages/tensorflow/models
     ports:
       - 8888:8888
+    environment:
+      - TZ=Asia/Shanghai
