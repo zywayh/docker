@@ -7,7 +7,7 @@ services:
       - ../../conf/mysql/conf:/etc/mysql/conf.d
       - ../../data/mysql/data:/var/lib/mysql
       - ../../data/mysql/log:/var/log/mysql
-      - ../../data/mysql/bak:/mysqlbak
+      - ../../data/mysql/bak:/bak
     ports:
       - 3306:3306
     environment:

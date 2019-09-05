@@ -13,11 +13,14 @@ docker 服务器测试环境搭建使用的整个目录结构及可能使用到�
 ---|---
 build|镜像编译文件目录
 compose|常用的docker-compose.yml
-data|镜像映射目录
-project|存放项目的目录
+conf|存放所有镜像所需的配置文件映射
+data|存放所有镜像产生的数据映射
+html|存放前端代码映射
+project|存放项目的目录映射
 shell|封装的脚本(可执行)文件
 
 ### build目录介绍
+
 目录|简介
 ---|---
 grails|grails运行镜像编译文件
