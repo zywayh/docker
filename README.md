@@ -59,3 +59,37 @@ rc.sh|开机启动脚本,添加到开机任务中,文件中的shell可启动
 
 
 
+#### openresty 简单使用
+
+```js
+$.ajax({
+	url: "/set",
+	data: {key: "",val: "val"},
+	dataType: "text",
+	success: function(data){
+		$('#resText').append(data);
+		if(data == "+OK"){
+			$('#resText').append("<div>true</div>");
+		}else{
+			$('#resText').append("<div>false</div>");
+		}
+	}
+});
+$.ajax({
+	url: "/get",
+	data: {key: "t2est"},
+	dataType: "text",
+	success: function(data){
+		$('#resText').append(data);
+		var list = data.split("\n")
+		if(list.length > 0){
+			$('#resText').append("<div>" + list[1] + "</div>");
+		}else{
+			$('#resText').append("<div>" + 获取失败 + "</div>");
+		}
+	}
+});
+```
+
+
+
