@@ -5,8 +5,7 @@ services:
     container_name: ghost
     ports:
       - "12368:2368"
-    environment:
-      - TZ=Asia/Shanghai
+    environment: 
       database__client: mysql
       database__connection__host: hengtaids.com
       database__connection__user: root

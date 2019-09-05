@@ -4,7 +4,7 @@ services:
     image: mysql:8.0.15
     container_name: mysql
     volumes:
-      - ../../data/mysql/conf:/etc/mysql/conf.d
+      - ../../conf/mysql/conf:/etc/mysql/conf.d
       - ../../data/mysql/data:/var/lib/mysql
       - ../../data/mysql/log:/var/log/mysql
       - ../../data/mysql/bak:/mysqlbak

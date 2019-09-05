@@ -4,10 +4,10 @@ services:
     image: openresty/openresty
     container_name: openresty
     volumes:
-      - ../../data/openresty/conf/conf.d:/etc/nginx/conf.d
+      - ../../conf/openresty/conf/conf.d:/etc/nginx/conf.d
       - ../../data/openresty/logs:/usr/local/openresty/nginx/logs
       - ../../data/certbot/letsencrypt/archive:/ssl
-      - ../../project:/project:ro
+      - ../../html:/html:ro
     links: 
       - redis
     ports:

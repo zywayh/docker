@@ -33,14 +33,14 @@ elk|
 eureka|
 eureka-ha|
 jenkins|
-kafka|
+kafka|使用kafka是请启动zk，并将docker-compose.yml中
 mysql|
 nginx|
-openresty|
+openresty|需配置docker-compose links：redis链接才可以使用redis
 redis|
 redis-sentinel|
 registry|
-solr|
+solr|ik分词器请自行配置
 zookeeper|
 zookeeper-ha|
 

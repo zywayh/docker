@@ -5,7 +5,7 @@ services:
     container_name: xiaomi
     volumes:
       - ../../project/xiaomi:/app/src
-      - ../../resource/.gradle:/root/.gradle
+      - ../../resource/xiaomi/gradle:/root/.gradle
     ports:
       - "8080:8080"
     working_dir: /app/src

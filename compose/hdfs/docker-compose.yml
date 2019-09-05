@@ -8,7 +8,6 @@ services:
     volumes:
       - ../../data/hdfs/namenode/hdfs:/opt/hdfs/
     environment:
-      - TZ=Asia/Shanghai
       HDFS_USER: hdfsuser
     ports:
       - "8020:8020"
@@ -26,7 +25,6 @@ services:
     volumes:
       - ../../data/hdfs/datanode/hdfs:/opt/hdfs/
     environment:
-      - TZ=Asia/Shanghai
       HDFS_USER: hdfsuser
     links:
       - namenode

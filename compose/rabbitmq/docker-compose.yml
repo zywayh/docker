@@ -3,7 +3,6 @@ services:
   rabbit:
     image: rabbitmq:management
     container_name: rabbit 
-#    hostname: rabbit
     ports:
       - "4369:4369"
       - "5671:5671"

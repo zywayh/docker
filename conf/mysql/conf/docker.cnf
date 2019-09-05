@@ -1,0 +1,42 @@
+[mysqld]
+
+#
+skip-host-cache
+
+#最大链接数
+max_connections=2000
+
+#不进行域名反解析,注意由此带来的权限/授权问题
+skip-name-resolve
+
+#索引缓存,根据内存大小而定,如果是独立的db服务器,可以设置高达80%的内存总量
+key_buffer_size = 2018M
+
+#连接排队列表总数
+back_log = 200
+max_allowed_packet = 1024M
+
+#打开表缓存总数,可以避免频繁的打开数据表产生的开销
+table_open_cache = 512
+
+#每个线程排序所需的缓冲
+sort_buffer_size = 4M
+
+#每个线程读取索引所需的缓冲
+read_buffer_size = 4M
+
+#MyISAM表发生变化时重新排序所需的缓冲
+myisam_sort_buffer_size = 64M
+
+#查询结果缓存
+#query_cache_size = 512M
+
+#设置超时时间,能避免长连接
+#show global variables like 'wait_timeout'; 
+#
+wait_timeout=604800
+
+#记录慢查询,然后对慢查询一一优化
+slow_query_log = on
+slow-query-log-file = /var/log/mysql/slow.log
+long_query_time = 1

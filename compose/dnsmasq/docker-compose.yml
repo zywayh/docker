@@ -6,7 +6,6 @@ services:
     volumes:
       - ../../data/dnsmasq/dnsmasq.conf:/etc/dnsmasq.conf
       - ../../data/dnsmasq/resolv.conf:/etc/resolv.conf
-      - /etc/hosts:/etc/dnsmasq.hosts
     ports:
       - 53:53
       - 5380:8080

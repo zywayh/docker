@@ -1,13 +1,2 @@
-data/mysql/data
-data/gitlab
-data/jenkins
-data/activemq
-data/solr
-data/nginx
-data/openresty
-data/tomcat
-data/hdfs
-data/elasticsearch/data
-html/ht_wx
-data/mongo/rep1/data
-data/nexus/data
+data
+html

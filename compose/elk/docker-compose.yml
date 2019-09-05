@@ -4,16 +4,17 @@ services:
         image: elasticsearch 
         container_name: elasticsearch
         volumes:  
-           - ../../data/elasticsearch/data/:/usr/share/elasticsearch/data  
-           - ../../data/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml  
-           - ../../data/elasticsearch/etc/security/limits.conf:/etc/security/limits.conf 
+            - ../../data/elasticsearch/data/:/usr/share/elasticsearch/data
+            - ../../conf/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+            - ../../conf/elasticsearch/etc/security/limits.conf:/etc/security/limits.conf
+            - ../../conf/elasticsearch/plugins:/usr/share/elasticsearch/plugins
         environment: 
-           - TZ=Asia/Shanghai
-           - ES_CLUSTERNAME=elasticsearch  
+            - TZ=Asia/Shanghai
+            - ES_CLUSTERNAME=elasticsearch  
         command: elasticsearch  
         ports:  
-           - "9200:9200"  
-           - "9300:9300"  
+            - "9200:9200"  
+            - "9300:9300"  
   
     kibana:   
         image: kibana  
@@ -40,8 +41,7 @@ services:
            - "25826:25826"  
            - "25826:25826/udp"  
         volumes:  
-           - ../../data/logstash/central:/conf  
-           - ../../data/logstash/data/:/data  
+           - ../../data/logstash/central:/conf
         command: logstash -f /conf/central.conf  
         links:  
            - redis1:redis  
@@ -56,7 +56,7 @@ services:
            - "25827:25827"  
            - "25827:25827/udp"  
         volumes:  
-           - ../../data/logstash/agent:/conf  
+           - ../../conf/logstash/agent:/conf  
         command: logstash -f /conf/agent.conf  
         links:  
            - redis1:redis

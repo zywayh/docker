@@ -5,15 +5,13 @@ services:
     container_name: gitlab
     hostname: 'zywayh.com'
     volumes:
-      - '../../data/gitlab/config:/etc/gitlab'
+      - '../../conf/gitlab/config:/etc/gitlab'
       - '../../data/gitlab/logs:/var/log/gitlab'
       - '../../data/gitlab/data:/var/opt/gitlab'
     ports:
       - '9090:80'
       - '2222:22'
     environment:
-    environment:
-      - TZ=Asia/Shanghai
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://zywayh.com'
         gitlab_rails['gitlab_shell_ssh_port'] = 2222

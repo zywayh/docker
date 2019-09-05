@@ -1,0 +1,13 @@
+cluster:
+  name: ${ES_CLUSTERNAME}  
+  
+node:
+  name: ${HOSTNAME}  
+  
+network:
+  host: 0.0.0.0
+  
+http:
+  cors:
+    enabled: true
+    allow-origin: "*"
