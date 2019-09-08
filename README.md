@@ -88,6 +88,76 @@ install-alioss.sh|安装阿里oss映射,可作为存储硬盘使用
 >
 > 查看插件列表：docker exec rabbit sh -c "rabbitmq-plugins list"
 
+* pom引入jar包
+
+  ```xml
+  <dependency>
+  	<groupId>org.springframework.boot</groupId>
+  	<artifactId>spring-boot-starter-amqp</artifactId>
+  </dependency>
+  ```
+
+  
+
+* 代码实现
+
+  ```java
+  import com.trend.config.RabbitMQConfig;
+  import org.springframework.amqp.core.AmqpTemplate;
+  import org.springframework.amqp.core.Message;
+  import org.springframework.amqp.core.MessageProperties;
+  import org.springframework.amqp.rabbit.annotation.RabbitListener;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.stereotype.Component;
+  
+  @Component
+  public class MqUtil {
+  
+      private static AmqpTemplate rabbitTemplate;
+  
+      @Autowired
+      private void setRabbitTemplate(AmqpTemplate rabbitTemplate){
+          MqUtil.rabbitTemplate = rabbitTemplate;
+      }
+  
+      /**
+       * 发送消息
+       * @param msg   消息体
+       */
+      public static void send(String msg) {
+          send(msg, 0);
+      }
+  
+      /**
+       * 发送延时消息
+       * @param msg   消息体
+       * @param delay 延时时间，如果为空，或者=0，或者小于0不延时
+       */
+      public static void send(String msg, Integer delay) {
+          if(delay <= 0){
+              rabbitTemplate.convertAndSend(RabbitMQConfig.MQ_ROUTING_KEY, msg);
+          }else{
+              MessageProperties properties = new MessageProperties();
+              properties.setDelay(delay);
+              Message message = new Message(msg.getBytes(), properties);
+              rabbitTemplate.send(RabbitMQConfig.MQ_EXCHANGE_NAME, RabbitMQConfig.MQ_ROUTING_KEY, message);
+          }
+      }
+  
+      /**
+       * 消费消息
+       * @param message
+       */
+      @RabbitListener(queues = RabbitMQConfig.MQ_QUEUE_NAME)
+      private void process(Message message) {
+          System.out.println("消息消费：" + new String(message.getBody()));
+      }
+  
+  }
+  ```
+
+  
+
 #### openresty 简单使用
 
 ```js
