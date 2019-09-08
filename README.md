@@ -80,7 +80,13 @@ install-alioss.sh|安装阿里oss映射,可作为存储硬盘使用
  vue.sh            | vue编译脚本                                       
  webhook.sh        | 钉钉的webhook喝水提醒通知脚本                     
 
+#### RabbitMQ 插件 rabbitmq_delayed_message_exchange 开启
 
+> 开启命令：docker exec rabbit sh -c "rabbitmq-plugins enable rabbitmq_delayed_message_exchange"
+>
+> 关闭命令：docker exec rabbit sh -c "rabbitmq-plugins disable rabbitmq_delayed_message_exchange"
+>
+> 查看插件列表：docker exec rabbit sh -c "rabbitmq-plugins list"
 
 #### openresty 简单使用
 
