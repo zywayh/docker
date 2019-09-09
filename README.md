@@ -1,6 +1,8 @@
 # docker
 docker 服务器测试环境搭建使用的整个目录结构及可能使用到的脚本文件
 
+本文档使用教程绝大部分基于java spring boot，除非有特殊标识说明基于其他的框架或语言
+
 # 快速使用
 ###  1：git clone https://github.com/zywayh/docker.git
 
@@ -68,6 +70,7 @@ zookeeper|
 zookeeper-ha|
 
 ### shell目录介绍
+
 目录|简介
 ---|---
 certbot.sh| ssl证书生成脚本                                   
@@ -80,13 +83,29 @@ install-alioss.sh|安装阿里oss映射,可作为存储硬盘使用
  vue.sh            | vue编译脚本                                       
  webhook.sh        | 钉钉的webhook喝水提醒通知脚本                     
 
-#### RabbitMQ 插件 rabbitmq_delayed_message_exchange 开启
+# 使用介绍
+
+## RabbitMQ
+
+### 启动
+
+进入 compose目录下的rabbit文件夹
+
+文件夹下存在docker-compose.yml文件
+
+使用docker-compose up -d后台启动
+
+### RabbitMQ 插件使用
+
+* 启动docker容器后，执行下列语句开启关闭rabbitmq_delayed_message_exchange 
 
 > 开启命令：docker exec rabbit sh -c "rabbitmq-plugins enable rabbitmq_delayed_message_exchange"
 >
 > 关闭命令：docker exec rabbit sh -c "rabbitmq-plugins disable rabbitmq_delayed_message_exchange"
 >
 > 查看插件列表：docker exec rabbit sh -c "rabbitmq-plugins list"
+
+#### spring boot使用方法
 
 * pom引入jar包
 
@@ -101,64 +120,164 @@ install-alioss.sh|安装阿里oss映射,可作为存储硬盘使用
 
 * 代码实现
 
-  ```java
-  import com.trend.config.RabbitMQConfig;
-  import org.springframework.amqp.core.AmqpTemplate;
-  import org.springframework.amqp.core.Message;
-  import org.springframework.amqp.core.MessageProperties;
-  import org.springframework.amqp.rabbit.annotation.RabbitListener;
-  import org.springframework.beans.factory.annotation.Autowired;
-  import org.springframework.stereotype.Component;
-  
-  @Component
-  public class MqUtil {
-  
-      private static AmqpTemplate rabbitTemplate;
-  
-      @Autowired
-      private void setRabbitTemplate(AmqpTemplate rabbitTemplate){
-          MqUtil.rabbitTemplate = rabbitTemplate;
-      }
-  
-      /**
-       * 发送消息
-       * @param msg   消息体
-       */
-      public static void send(String msg) {
-          send(msg, 0);
-      }
-  
-      /**
-       * 发送延时消息
-       * @param msg   消息体
-       * @param delay 延时时间，如果为空，或者=0，或者小于0不延时
-       */
-      public static void send(String msg, Integer delay) {
-          if(delay <= 0){
-              rabbitTemplate.convertAndSend(RabbitMQConfig.MQ_ROUTING_KEY, msg);
-          }else{
-              MessageProperties properties = new MessageProperties();
-              properties.setDelay(delay);
-              Message message = new Message(msg.getBytes(), properties);
-              rabbitTemplate.send(RabbitMQConfig.MQ_EXCHANGE_NAME, RabbitMQConfig.MQ_ROUTING_KEY, message);
-          }
-      }
-  
-      /**
-       * 消费消息
-       * @param message
-       */
-      @RabbitListener(queues = RabbitMQConfig.MQ_QUEUE_NAME)
-      private void process(Message message) {
-          System.out.println("消息消费：" + new String(message.getBody()));
-      }
-  
-  }
-  ```
+  * 队列创建
 
-  
+    ```java
+    import org.springframework.amqp.core.*;
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.stereotype.Component;
+    
+    import java.util.HashMap;
+    import java.util.Map;
+    
+    /**
+     * @description:
+     * @author: zhuyawei
+     * @date: 2019-09-06 13:17
+     */
+    @Component
+    public class RabbitMQConfig {
+    
+        /**
+         * 定义queue名称
+         */
+        public static final String MQ_QUEUE_NAME = "QU_SHI";
+    
+        /**
+         * 定义exchange
+         */
+        public static final String MQ_EXCHANGE_NAME = MQ_QUEUE_NAME;
+    
+        /**
+         * 定义queue和exchange绑定使用的routingKey名称
+         */
+        public static final String MQ_ROUTING_KEY = MQ_EXCHANGE_NAME;
+    
+        /**
+         * 创建消息队列
+         * @return
+         */
+        @Bean
+        public static Queue queue() {
+            return new Queue(MQ_QUEUE_NAME);
+        }
+    
+        /**
+         * 创建自定义类型的exchange
+         * 应用于延时消息队列使用，需与queue进行bind
+         * @return
+         */
+        @Bean
+        public static CustomExchange exchange() {
+            Map<String, Object> arguments = new HashMap<>();
+            arguments.put("x-delayed-type", "direct");
+            return new CustomExchange(MQ_EXCHANGE_NAME, "x-delayed-message", true, false, arguments);
+        }
+    
+        /**
+         * queue和自定义exchange进行绑定
+         * @param queue
+         * @param exchange
+         * @return
+         */
+        @Bean
+        Binding bindingExchangeMessages(Queue queue, CustomExchange exchange) {
+            return BindingBuilder.bind(queue).to(exchange).with(MQ_ROUTING_KEY).noargs();
+        }
+    
+    //    /**
+    //     * 创建RabbitMQ指定类型的
+    //     * @return
+    //     */
+    //    @Bean
+    //    TopicExchange topicExchange() {
+    //        return new TopicExchange(MQ_EXCHANGE_NAME);
+    //    }
+    //
+    //    /**
+    //     * queue和exchange进行绑定
+    //     * 创建普通非延时exchange及绑定，如无特殊需求，在非延时队列并不需要创建exchange
+    //     * @param queueMessages
+    //     * @param topicExchange
+    //     * @return
+    //     */
+    //    @Bean
+    //    Binding bindingExchangeMessages(Queue queueMessages, TopicExchange topicExchange) {
+    //        return BindingBuilder.bind(queueMessages).to(topicExchange).with(MQ_ROUTING_KEY);
+    //    }
+    
+    }
+    ```
 
-#### openresty 简单使用
+    
+
+  * 生产者及消费者
+
+    ```java
+    import com.trend.config.RabbitMQConfig;
+    import org.springframework.amqp.core.AmqpTemplate;
+    import org.springframework.amqp.core.Message;
+    import org.springframework.amqp.core.MessageProperties;
+    import org.springframework.amqp.rabbit.annotation.RabbitListener;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Component;
+    
+    /**
+     * @description: mq 工具类，其中包含生产者及消费者，
+     * @author: zhuyawei
+     * @date: 2019-09-06 13:19
+     */
+    @Component
+    public class MqUtil {
+    
+        private static AmqpTemplate rabbitTemplate;
+    
+        @Autowired
+        private void setRabbitTemplate(AmqpTemplate rabbitTemplate){
+            MqUtil.rabbitTemplate = rabbitTemplate;
+        }
+    
+        /**
+         * 发送消息
+         * @param msg   消息体
+         */
+        public static void send(String msg) {
+            send(msg, 0);
+        }
+    
+        /**
+         * 发送延时消息
+         * @param msg   消息体
+         * @param delay 延时时间，如果为空，或者=0，或者小于0不延时
+         */
+        public static void send(String msg, Integer delay) {
+            if(delay <= 0){
+                rabbitTemplate.convertAndSend(RabbitMQConfig.MQ_ROUTING_KEY, msg);
+            }else{
+                MessageProperties properties = new MessageProperties();
+                properties.setDelay(delay);
+                Message message = new Message(msg.getBytes(), properties);
+                rabbitTemplate.send(RabbitMQConfig.MQ_EXCHANGE_NAME, RabbitMQConfig.MQ_ROUTING_KEY, message);
+            }
+        }
+    
+        /**
+         * 消费消息（处理逻辑请另行定义）
+         * @param message
+         */
+        @RabbitListener(queues = RabbitMQConfig.MQ_QUEUE_NAME)
+        private void process(Message message) {
+            System.out.println("消息消费：" + new String(message.getBody()));
+        }
+    }
+    
+    ```
+
+    
+
+## openresty 简单使用
+
+> 使用时请先链接docker-compose.yml文件中的links，使其能够连通redis进行使用
 
 ```js
 $.ajax({
