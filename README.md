@@ -8,7 +8,7 @@ docker 服务器测试环境搭建使用的整个目录结构及可能使用到�
 
 ### 2：cd ./docker/shell
 
-### 3：执行脚本  ./docker-install.sh  安装docker和docker-compose
+### 3：执行脚本  ./install-docker.sh  安装docker和docker-compose
 
 ### 4：进入compose，找到想使用的服务，进入文件夹
 
