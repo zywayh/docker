@@ -9,6 +9,9 @@ services:
       TZ: Asia/Shanghai
       KAFKA_ADVERTISED_HOST_NAME: 192.168.31.55
       KAFKA_CREATE_TOPICS: "test:1:1"
-      KAFKA_ZOOKEEPER_CONNECT: 192.168.0.149:2181,192.168.0.149:2182,192.168.0.149:2183
+      KAFKA_ZOOKEEPER_CONNECT: zk:2181
       KAFKA_BROKER_ID: "1"
       KAFKA_ADVERTISED_PORT: 9092
+  zk:
+    image: zookeeper
+    container_name: kafka-zk
