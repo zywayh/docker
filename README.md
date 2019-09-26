@@ -4,6 +4,7 @@ docker 服务器测试环境搭建使用的整个目录结构及可能使用到�
 本文档使用教程绝大部分基于java spring boot，除非有特殊标识说明基于其他的框架或语言
 
 # 快速使用
+
 ###  1：git clone https://github.com/zywayh/docker.git
 
 ### 2：cd ./docker/shell
@@ -310,4 +311,11 @@ $.ajax({
 ```
 
 
+
+## 个人博客 Jpress
+
+> 使用注意事项
+>
+> * 需手动创建数据库，需要时utf8mb4格式
+> * 无法评论的问题，需要在 “文章” -> “设置” -> “评论功能”中开启评论 
 

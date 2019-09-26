@@ -1,0 +1,24 @@
+version: '2'
+services:
+  jpress:
+    image: fuhai/jpress
+    container_name: jpress
+    ports:
+      - "8080:8080"
+    environment:
+      TZ: Asia/Shanghai
+      JPRESS_DB_HOST: 192.168.1.100
+      JPRESS_DB_PORT: 3306
+      JPRESS_DB_NAME: jpress
+      JPRESS_DB_USER: root
+      JPRESS_DB_PASSWORD: root
+      JBOOT_APP_MODE: dev    # dev prod
+      # UNDERTOW_HOTSWAPCLASSPREFIX: io.jpress
+    volumes:
+      - "../../data/jpress/attachment:/opt/jpress/webapp/attachment"
+      - "../../data/jpress/addons:/opt/jpress/webapp/addons"
+      - "../../data/jpress/WEB-INF/addons:/opt/jpress/webapp/WEB-INF/addons"
+      - "../../data/jpress/wp-content:/opt/jpress/webapp/wp-content"
+      - "../../data/jpress/templates/dockers:/opt/jpress/webapp/templates/dockers"
+
+
