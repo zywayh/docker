@@ -334,7 +334,13 @@ $.ajax({
 >
 > 构建后执行shell脚本操作
 >
-> * “增加构建后操作步骤”，在下拉选项中选择“Send build artifacts over SSH”这个选项，如果没有这个选项，需要装个“Publish Over SSH”的插件
+> > 解决方案：
+> >
+> > 因本教程使用的为docker容器，容器和宿主机隔离，故无法执行本地脚本，建议使用远端执行脚本
+> >
+> > 单目前发现一个问题，配置脚本目录也会更新一遍对应仓库的代码，**暂无解决此问题**
+>
+> “增加构建后操作步骤”，在下拉选项中选择“Send build artifacts over SSH”这个选项，如果没有这个选项，需要装个“Publish Over SSH”的插件，详细配置请自行百度，主要是配置全局配置Publish Over SSH添加远端主机，添加后即可在“增加构建后操作步骤”处选择“Send build artifacts over SSH”添加执行
 
 ### 启动
 
