@@ -320,3 +320,78 @@ $.ajax({
 > * 无法评论的问题，需要在 “文章” -> “设置” -> “评论功能”中开启评论 
 > * **注意事项：每日删除容器，重新创建启动后，需要配置数据库连接**
 
+
+
+## 持续集成工具 jenkins
+
+> linux启动时，因为系统权限问题，无法创建对应的文件，
+>
+> 使用命令 `sudo chown -R 1000:1000 文件目录` 进行修改目录权限（容器中jenkins user的uid为1000）
+>
+> 其中下载插件的时间最长，建议下载插件，放到plugin目录下（缺点首次启动时间会延长几倍），启动完成后，今日安装推荐页面点击安装直接就会成功
+>
+> 使用命令`wget http://file.ywyh.red/jenkins_2.198_plugins.zip`下载插件包，解压到对应目录即可
+>
+> 构建后执行shell脚本操作
+>
+> * “增加构建后操作步骤”，在下拉选项中选择“Send build artifacts over SSH”这个选项，如果没有这个选项，需要装个“Publish Over SSH”的插件
+
+### 启动
+
+* 进入docker -> compose -> jenkins 目录下
+* 使用docker-compose up -d 启动jenkins
+
+### 初始化配置
+
+* 初始密码位置：data/jenkins/secrets/initialAdminPassword
+
+  > data/ 为相对目录，请根据自己映射的宿主机文件目录结构查找
+
+* 输入初始密码，进入配置首页后，输入网址 http://IP地址/pluginManager/advanced配置镜像源
+
+  > 因下载插件慢，解决办法为更换镜像源，所以可以先不安装插件（选择自定义安装，取消所有选择安装的插件，点击下一步），进入jenkins后在 系统管理->管理插件->高级->升级站点更换镜像源，
+
+  站点信息从：https://updates.jenkins.io/update-center.json 改为如下地址【三选一即可】
+
+  http://mirror.xmission.com/jenkins/updates/update-center.json   # 推荐
+  http://mirrors.shu.edu.cn/jenkins/updates/current/update-center.json
+  https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
+
+  **更换镜像源后需要重启**
+
+*  进入Jenkins首页：http://IP地址，安装推荐插件（新手推荐）
+
+  > gitlab需要安装插件 gitlab plugin 和 gitlab hook plugin
+
+*  配置实例 Jenkins URL
+
+### 构建项目
+
+> [创建任务教程](https://www.cnblogs.com/reblue520/p/7130914.html) 
+>
+> [gitlab添加ssh的教程](https://blog.51cto.com/bigboss/2129477)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
