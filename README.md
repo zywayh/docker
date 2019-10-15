@@ -5,6 +5,8 @@ docker 服务器测试环境搭建使用的整个目录结构及可能使用到�
 
 # 快速使用
 
+> 安装git：yum install git -y
+
 ###  1：git clone https://github.com/zywayh/docker.git
 
 ### 2：cd ./docker/shell
