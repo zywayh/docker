@@ -77,7 +77,7 @@ zookeeper-ha|
 certbot.sh| ssl证书生成脚本                                   
 crontab.txt|定时任务demo
 install-docker.sh|系统初始化安装docker
-install-alioss.sh|安装阿里oss映射,可作为存储硬盘使用
+install-alioss.sh|安装阿里oss映射,可作为存储硬盘使用 [官方文档](https://help.aliyun.com/document_detail/32196.html?spm=a2c4g.11186623.6.746.19653090nsDPq0)
  mongodump.sh      | docker镜像mongo数据库备份数据                     
  mysqldump.sh      | docker镜像mysql数据库备份数据                     
  rc.sh             | 开机启动脚本,添加到开机任务中,文件中的shell可启动 
@@ -332,7 +332,7 @@ $.ajax({
 >
 > 使用命令`wget http://file.ywyh.red/jenkins_2.198_plugins.zip`下载插件包，解压到对应目录即可
 >
-> 构建后执行shell脚本操作
+> 构建后执行shell脚本操作，里面包含了初始安装，gitlab，ssh等必要的插件，如需其他请自行下载
 >
 > > 解决方案：
 > >
@@ -376,10 +376,6 @@ $.ajax({
 > [创建任务教程](https://www.cnblogs.com/reblue520/p/7130914.html) 
 >
 > [gitlab添加ssh的教程](https://blog.51cto.com/bigboss/2129477)
-
-
-
-
 
 
 
