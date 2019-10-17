@@ -5,9 +5,9 @@ services:
     container_name: elasticsearch
     volumes:
       - ../../data/elasticsearch/data/:/usr/share/elasticsearch/data
+      - ../../conf/elasticsearch/plugins:/usr/share/elasticsearch/plugins
       - ../../conf/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       - ../../conf/elasticsearch/etc/security/limits.conf:/etc/security/limits.conf
-      - ../../conf/elasticsearch/plugins:/usr/share/elasticsearch/plugins
     environment:  
       - TZ=Asia/Shanghai
       - ES_CLUSTERNAME=elasticsearch

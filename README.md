@@ -9,6 +9,8 @@ docker 服务器测试环境搭建使用的整个目录结构及可能使用到�
 
 ###  1：git clone https://github.com/zywayh/docker.git
 
+![](D:\work\docker\.assets\README\1571318842531.png)
+
 ### 2：cd ./docker/shell
 
 ### 3：执行脚本  ./install-docker.sh  安装docker和docker-compose
