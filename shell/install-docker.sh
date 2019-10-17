@@ -42,7 +42,17 @@ if [ $? -ne 0 ]; then
   # sudo yum-config-manager --add-repo http://mirrors.aliyuncs.com/docker-ce/linux/centos/docker-ce.repo
   # VPC网络：
   # sudo yum-config-manager --add-repo http://mirrors.could.aliyuncs.com/docker-ce/linux/centos/docker-ce.repo
-fi
+
+  echo "配置阿里镜像源-----------------------------------------------------"
+  sudo mkdir -p /etc/docker
+  sudo tee /etc/docker/daemon.json <<-'EOF'
+  {
+    "registry-mirrors": ["https://thu8zyqr.mirror.aliyuncs.com"]
+  }
+  EOF
+  sudo systemctl daemon-reload
+  sudo systemctl restart docker
+  fi
 
 docker-compose -h
 if [ $? -ne 0 ]; then 
@@ -67,13 +77,20 @@ fi
 
 echo "配置目录权限---------------------------"
 # 配置solr文件权限
-chown -R 8983:root ../data/solr/cores/
+if [ ! -d "../data/solr/cores/" ];then
+  mkdir -p ../data/solr/cores/
+  chown -R 8983:root ../data/solr/cores/
+fi
+
 #配置es ik分词插件
-yml install wget -y
-yml install unzip -y
-mkdir ../data/elasticsearch/plugins
-cd ../data/elasticsearch/plugins
-wget http://f.zyw.ink/elasticsearch/plugins/ik.zip
-unzip ik.zip
-rm -rf ik.zip
+if [ ! -d "../data/elasticsearch/plugins" ];then
+  yum install wget -y
+  yum install unzip -y
+  mkdir -p ../data/elasticsearch/plugins
+  cd ../data/elasticsearch/plugins
+  wget http://f.zyw.ink/elasticsearch/plugins/ik.zip
+  unzip ik.zip
+  rm -rf ik.zip
+fi
+
 
