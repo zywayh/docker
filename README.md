@@ -12,6 +12,10 @@ docker 服务器测试环境搭建使用的整个目录结构及可能使用到�
 
 1：git clone --depth 1 https://github.com/zywayh/docker.git
 
+> 码云地址： https://gitee.com/ywyh/docker 
+>
+> 私有地址：
+
 ![1571321995331](.assets/README/1571321995331.png)
 
 2：cd ./docker/shell
