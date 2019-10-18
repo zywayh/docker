@@ -14,7 +14,7 @@ docker 服务器测试环境搭建使用的整个目录结构及可能使用到�
 
 > 码云地址： https://gitee.com/ywyh/docker 
 >
-> 私有地址：
+> 私有地址：http://git.healthtoo.cn/ywyh/docker
 
 ![1571321995331](.assets/README/1571321995331.png)
 
@@ -32,9 +32,9 @@ docker 服务器测试环境搭建使用的整个目录结构及可能使用到�
 
 5：执行命令 docker-compose up -d 启动服务   docker-compose down 关闭服务
 
-> 如在下载镜像中出现 `Get https://registry-1.docker.io/v2/: net/http: TLS handshake timeout` 或 `ERROR: Get https://registry-1.docker.io/v2/library/nginx/manifests/latest: net/http: TLS handshake timeout` 错误，使用docker pull 镜像名
+> 如在下载镜像中出现 `Get https://registry-1.docker.io/v2/: net/http: TLS handshake timeout` 或 `ERROR: Get https://registry-1.docker.io/v2/library/nginx/manifests/latest: net/http: TLS handshake timeout` 错误，重试或使用docker pull 镜像名先拉取镜像（如无法解决请自行百度）
 
-
+![image-20191018095945364](.assets/README/image-20191018095945364.png)
 
 ## docker 命令说明
 
