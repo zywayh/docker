@@ -45,11 +45,7 @@ if [ $? -ne 0 ]; then
 
   echo "配置阿里镜像源-----------------------------------------------------"
   sudo mkdir -p /etc/docker
-  sudo tee /etc/docker/daemon.json <<-'EOF'
-  {
-    "registry-mirrors": ["https://thu8zyqr.mirror.aliyuncs.com"]
-  }
-  EOF
+  echo '{"registry-mirrors": ["https://thu8zyqr.mirror.aliyuncs.com"]}' >> /etc/docker/daemon.json
   sudo systemctl daemon-reload
   sudo systemctl restart docker
   fi
