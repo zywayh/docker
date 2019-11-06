@@ -1,0 +1,17 @@
+version: '2'
+# spring boot 基于 maven
+services:
+  maven:
+    image: maven
+    container_name: maven
+    volumes:
+      - ../../conf/maven/settings.xml:/usr/share/maven/conf/settings.xml
+      - ../../data/maven/m2:/root/.m2
+      - ../../data/maven/target:/usr/src/mymaven/target
+      - ../../project/项目文件夹:/project  
+
+    ports:
+      - 3306:3306
+    environment:
+      - TZ=Asia/Shanghai
+    command: mvn -f /project spring-boot:run

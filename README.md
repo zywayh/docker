@@ -4,6 +4,8 @@ docker 服务器测试环境搭建使用的整个目录结构及可能使用到�
 
 本文档使用教程绝大部分基于java spring boot，除非有特殊标识说明基于其他的框架或语言
 
+[关于多个docker-compose间通讯问题](https://blog.csdn.net/tang05709/article/details/88410471)
+
 ## 快速使用
 
 > 安装git：yum install git -y
@@ -107,6 +109,34 @@ install-alioss.sh|安装阿里oss映射,可作为存储硬盘使用 [官方文�
  webhook.sh        | 钉钉的webhook喝水提醒通知脚本                     
 
 # 使用介绍
+
+## 花生壳
+
+#### centos 7.x
+
+> [官方文档](http://service.oray.com/question/4287.html )，[下载地址](https://hsk.oray.com/download/)
+>
+> 下载时，请注意官网的最新版本号
+
+* wget http://download.oray.com/peanuthull/linux/phddns-3.0.2.x86_64.rpm
+
+  ![image-20191105134337439](.assets/README/image-20191105134337439.png)
+
+* rpm -ivh phddns-3.0.2.x86_64.rpm 
+
+  > 安装后会出现sn码和默认密码，在网页端进行登录http://b.oray.com
+
+  <img src=".assets/README/image-20191105133917703.png" alt="image-20191105133917703"/>
+
+* 登录后需要激活，请使用app登录自己的花生壳账号进行登录绑定机器，后在页面配置映射地址即可使用
+
+#### win
+
+在官网下载win花生壳软件，打开即可使用
+
+#### Mac
+
+在官网下载win花生壳软件，打开即可使用
 
 ## RabbitMQ
 
@@ -401,15 +431,59 @@ $.ajax({
 
 
 
+## kafka
 
+> 硬件对性能的影响以及优先考虑的顺序
 
+* 磁盘：影响最大的事生产者，读写速度，还要考虑分区（多个分区，多个目录，备份问题）
+* 网络：生产者，消费者的写入速度和读取速度
+* 内存：消费者性能 （0拷贝，生产者消费者全部都在内存操作完成，没有经过磁盘）
+* cpu：主要体现在压缩上
 
+### 生产者消费者
 
+#### 生产者
 
+* 实例
 
+  ```
+  
+  ```
 
+  * bootstrap.servers
+    该属性指定broker的地址清单，地址的格式为host:port。清单里不需要包含所有的broker地址，生产者会从给定的broker里查询其他broker的信息。 不过最少提供 2 个 broker 的信息(用逗号分隔，比如: 127.0.0.1:9092,192.168.0.13:9092)，一旦其中一个宕机，生产者仍能连接到集群上。
+  * key.serializer
+    生产者接口允许使用参数化类型，可以把 Java 对象作为键和值传 broker，但是 broker 希望收到的消息的键和值都是字节数组，所以，必须提供将对 象序列化成字节数组的序列化器。key.serializer 必须设置为实现 org.apache.kafka.common.serialization.Serializer 的接口类，Kafka 的客户端默认提供了 ByteArraySerializer,IntegerSerializer, StringSerializer，也可以实现自定义的序列化器。
+  * value.serializer
+    同 key.serializer。
+    参见代码，模块 kafka-no-spring 下包 hellokafka 中
 
+##### 发送方式
 
+* 发送并忘记（发送没有进行任何的处理，效率最高，会有重试机制，但是可能会丢失消息）
+
+* 同步发送（发送后返回futrue对象，用.get()获取元数据**同步阻塞**，）
+
+* 异步发送（new Callback(){}）
+
+* ACKS机制
+
+  > 消息在集群下的复制机制（银行一般会用5个副本，不同机架，异地灾备）
+
+  * 0：发送消息后就不再管了
+  * 1：如果发送给首领，首领挂掉了，就会抛出异常（有重试）**默认**
+  * -1：
+  * all：必须给所有的分区都写入成功，才会返回成功
+
+##### 顺序保证
+
+> 必须只有一个分区，如果有多个分许是非常困难的
+
+![image-20191103102133614](.assets/README/image-20191103102133614.png)
+
+在重试机制下，消息顺序是有可能打乱的，通过此配置可以实现，有顺序保障，严重影响吞吐量，慎用
+
+![image-20191103102223366](.assets/README/image-20191103102223366.png)
 
 
 

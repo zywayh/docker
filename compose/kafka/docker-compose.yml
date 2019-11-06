@@ -1,5 +1,6 @@
 version: '2'
 services:
+  # https://hub.docker.com/r/wurstmeister/kafka
   kafka:
     image: wurstmeister/kafka
     container_name: kafka
@@ -7,11 +8,21 @@ services:
       - 9092:9092
     environment:
       TZ: Asia/Shanghai
-      KAFKA_ADVERTISED_HOST_NAME: 192.168.31.55
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.31.104
+      # KAFKA_CREATE_TOPICS: "Topic1:1:3,Topic名称:1个分区:3个副本"
+      # Topic 1将具有1个分区和3个副本，Topic 2将具有1个分区，1个副本和一cleanup.policy组compact。
       KAFKA_CREATE_TOPICS: "test:1:1"
       KAFKA_ZOOKEEPER_CONNECT: zk:2181
+      # 配置集群需要进行修改
       KAFKA_BROKER_ID: "1"
       KAFKA_ADVERTISED_PORT: 9092
+  kafka-manager:  
+    image: sheepkiller/kafka-manager
+    container_name: kafka-manager
+    environment:
+        ZK_HOSTS: zk:2181
+    ports:  
+      - "9000:9000"
   zk:
     image: zookeeper
     container_name: kafka-zk
