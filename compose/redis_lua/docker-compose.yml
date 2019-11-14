@@ -1,0 +1,12 @@
+version: '2'
+services:
+  redis:
+    image: 865308221/redis_lua
+    container_name: redis_lua
+    volumes:
+      - ../../data/redis_lua/data:/data
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly no", "--requirepass redis"]
+    environment:
+      - TZ=Asia/Shanghai
