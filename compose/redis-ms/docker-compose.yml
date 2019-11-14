@@ -19,7 +19,7 @@ services:
     ports:
       - "6378:6379"
     # command: ["redis-server", "--appendonly no", "--requirepass redis"]
-    command: ["redis-server", "--appendonly no", "--slaveof 192.168.31.159 6379"]
+    command: ["redis-server", "--appendonly no", "--slaveof 192.168.31.159 6379", "--slave-read-only yes"]
     environment:
       - TZ=Asia/Shanghai
   redis3:
@@ -30,6 +30,6 @@ services:
     ports:
       - "6377:6379"
     # command: ["redis-server", "--appendonly no", "--requirepass redis"]
-    command: ["redis-server", "--appendonly no", "--slaveof 192.168.31.159 6379"]
+    command: ["redis-server", "--appendonly no", "--slaveof 192.168.31.159 6379", "--slave-read-only yes"]
     environment:
       - TZ=Asia/Shanghai
