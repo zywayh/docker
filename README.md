@@ -148,6 +148,14 @@ install-alioss.sh|安装阿里oss映射,可作为存储硬盘使用 [官方文�
 
 使用docker-compose up -d后台启动
 
+> docker-compose 文件中，volumes
+>
+> - ../../conf/rabbit/plugins:/plugins/my：映射镜像内部的/plugins/my目录作为自定义插件目录
+>
+> - enabled_plugins：管理默认启动插件列表，如需新增默认启动插件，直接在文件中添加名称即可
+>
+>   [rabbitmq_management,rabbitmq_delayed_message_exchange].
+
 ### RabbitMQ 插件使用
 
 * 启动docker容器后，执行下列语句开启关闭[rabbitmq_delayed_message_exchange ](https://www.rabbitmq.com/community-plugins.html)

@@ -10,7 +10,8 @@ services:
       - "15671:15671"
       - "15672:15672"
     volumes:
-      - ../../conf/rabbit/plugins/rabbitmq_delayed_message_exchange-20171201-3.7.x.ez:/plugins/rabbitmq_delayed_message_exchange-20171201-3.7.x.ez
+      - ../../conf/rabbit/plugins:/plugins/my
+      - ../../conf/rabbit/enabled_plugins:/etc/rabbitmq/enabled_plugins
     environment:
       - TZ=Asia/Shanghai
       - RABBITMQ_DEFAULT_USER=test
