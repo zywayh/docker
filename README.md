@@ -150,7 +150,7 @@ install-alioss.sh|安装阿里oss映射,可作为存储硬盘使用 [官方文�
 
 ### RabbitMQ 插件使用
 
-* 启动docker容器后，执行下列语句开启关闭rabbitmq_delayed_message_exchange 
+* 启动docker容器后，执行下列语句开启关闭[rabbitmq_delayed_message_exchange ](https://www.rabbitmq.com/community-plugins.html)
 
 > 开启命令：docker exec rabbit sh -c "rabbitmq-plugins enable rabbitmq_delayed_message_exchange"
 >
