@@ -13,6 +13,8 @@ services:
       - ../../conf/rabbit/plugins:/plugins/my
       - ../../conf/rabbit/enabled_plugins:/etc/rabbitmq/enabled_plugins
     environment:
+      # 配置rabbit插件扫描文件夹
+      - RABBITMQ_PLUGINS_DIR=/plugins:/plugins/my
       - TZ=Asia/Shanghai
       - RABBITMQ_DEFAULT_USER=test
       - RABBITMQ_DEFAULT_PASS=test

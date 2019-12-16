@@ -7,8 +7,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
-      - ../../data/mongo/rep1/data:/data/db
-      - ../../data/mongo/rep1/bak:/data/bak
+      - ../../data/mongo/data:/data/db
+      - ../../data/mongo/bak:/data/bak
     ports:
       - "27017:27017"
   mongo-express:
