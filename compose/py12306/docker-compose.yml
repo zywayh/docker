@@ -1,0 +1,22 @@
+version: "2"
+services:
+  py12306:
+    image: pjialin/py12306
+    container_name: py12306
+    volumes:
+      - ../../conf/py12306/env.py:/config/env.py
+      - ../../conf/py12306/12306.log:/config/12306.log
+      - ../../conf/py12306/api.py:/code/py12306/helpers/api.py
+      - ../../data/py12306:/data
+    ports:
+      - "8008:8008"
+    links:
+      - ocr12306
+    environment:
+      - API_FREE_CODE_QCR_API=http://ocr12306/check/
+  ocr12306:
+    image: pjialin/12306-ocr
+    container_name: ocr12306
+    # ports:
+    #   - "8000:8000"
+
