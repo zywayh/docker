@@ -3,9 +3,9 @@
 USER_ACCOUNTS = [
     # 目前已支持仅查询，不下单，屏蔽掉下面的账号即可
     {
-        'key': "zhuyawei",  # 如使用多个账号 key 不能重复
-        'user_name': 'zhuyaweianyahong',
-        'password': 'zywaiayh1314'
+        'key': 0,  # 如使用多个账号 key 不能重复
+        'user_name': '',
+        'password': ''
     # },{
     #     'key': 'anyahong',
     #     'user_name': 'wangwu@qq.com',
@@ -16,8 +16,8 @@ USER_ACCOUNTS = [
 # 查询任务
 QUERY_JOBS = [
     {
-        # 将会使用指定账号下单
-        'account_key': "zhuyawei",  
+        # 将会使用指定账号下单,这个值对应USER_ACCOUNTS.key
+        'account_key': 0,  
         # 出发日期 :Array
         'left_dates': ["2020-01-16", "2020-01-21"],
         # 筛选时间
@@ -30,7 +30,7 @@ QUERY_JOBS = [
         # ],
         'stations': {'left': '北京', 'arrive': '定州'},
         # 乘客姓名，会根据当前账号自动识别乘客类型 购买儿童票 设置两个相同的姓名即可，程序会自动识别 如  ['张三', '张三']
-        'members': ["朱亚伟", "安亚红"],
+        'members': [""],
         # 是否允许余票不足时提交部分乘客
         'allow_less_member': 0,  
         # 筛选座位  有先后顺序 :Array 可用值: 特等座, 商务座, 一等座, 二等座, 软卧, 硬卧, 动卧, 软座, 硬座, 无座
