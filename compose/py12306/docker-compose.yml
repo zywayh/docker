@@ -1,5 +1,7 @@
 version: "2"
 services:
+  # 问题排查 https://docs.qq.com/doc/BibfIy26LF8B31cHKf3v6aDZ2uFEkR244JS01IQmKC2Cjyb92WXZOz2PNoNJ4SSq071Y681J2?tdsourcetag=s_macqq_grpfile
+  # https://github.com/pjialin/py12306
   py12306:
     image: pjialin/py12306
     container_name: py12306
@@ -14,6 +16,9 @@ services:
       - ocr12306
     environment:
       - API_FREE_CODE_QCR_API=http://ocr12306/check/
+
+  # https://github.com/pjialin/12306-ocr
+  # https://py12306-helper.pjialin.com/
   ocr12306:
     image: pjialin/12306-ocr
     container_name: ocr12306
