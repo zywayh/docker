@@ -1,6 +1,6 @@
 version: '2'
 services:
-  mysql:
+  dnsmasq:
     image: jpillora/dnsmasq
     container_name: dnsmasq
     volumes:
