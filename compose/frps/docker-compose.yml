@@ -4,7 +4,7 @@ services:
     image: ruiny/frps
     container_name: frps
     volumes:
-      - ../../conf/frp/conf:/var/frp/conf
+      - ../../conf/frps/conf:/var/frp/conf
     ports:
       - 10080:80
       - 10443:443
