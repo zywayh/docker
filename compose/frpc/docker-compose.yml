@@ -1,0 +1,10 @@
+version: '2'
+services:
+  frpc:
+    image: stilleshan/frpc
+    container_name: frpc
+    volumes:
+      - ../../conf/frpc/conf/frpc.ini:/frp/frpc.ini
+    network_mode: "host"
+
+
