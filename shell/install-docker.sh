@@ -15,9 +15,9 @@ if [ $? -ne 0 ]; then
   sudo yum makecache fast
   sudo yum -y install docker-ce
   # Step 4: 开启Docker服务
-  sudo service docker start
+  sudo systemctl restart docker
 
-  注意：其他注意事项在下面的注释中
+  # 注意：其他注意事项在下面的注释中
   # 官方软件源默认启用了最新的软件，您可以通过编辑软件源的方式获取各个版本的软件包。例如官方并没有将测试版本的软件源置为可用，你可以通过以下方式开启。同理可以开启各种测试版本等。
   # vim /etc/yum.repos.d/docker-ce.repo
   #   将 [docker-ce-test] 下方的 enabled=0 修改为 enabled=1
@@ -53,23 +53,15 @@ if [ $? -ne 0 ]; then
 docker-compose -h
 if [ $? -ne 0 ]; then 
   echo "安装docker-compose---------------------------------------------------------"
-  if [ ! -f "/usr/local/bin/docker-compose" ]; then
-    if [ ! -f "./docker-compose-Linux-x86_64" ]; then
-      yum install wget -y
-      wget http://f.zyw.ink/docker-compose-Linux-x86_64
-    fi
-    mv docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
-    chmod +x /usr/local/bin/docker-compose
-    
-    echo "配置开机启动-----------"
-    chmod +x ./rc.sh
-    echo $PWD/rc.sh >> /etc/rc.d/rc.local 
-  else
-    if [ ! -x "/usr/local/bin/docker-compose" ]; then
-      chmod +x /usr/local/bin/docker-compose
-    fi
-  fi
+  curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  chmod +x /usr/local/bin/docker-compose
+  
+  echo "配置开机启动-----------"
+  chmod +x ./rc.sh
+  echo $PWD/rc.sh >> /etc/rc.d/rc.local 
 fi
+
+
 
 echo "配置目录权限---------------------------"
 # 配置solr文件权限

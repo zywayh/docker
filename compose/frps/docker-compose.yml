@@ -5,13 +5,5 @@ services:
     container_name: frps
     volumes:
       - ../../conf/frps/conf:/var/frp/conf
-    ports:
-      - 10080:80
-      - 10443:443
-      - 15000:5000
-      - 15100:5100
-      - 17000:7000
-      - 17001:7001
-      - 17500:7500
-
+    network_mode: 'host'
 
