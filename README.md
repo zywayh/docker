@@ -425,7 +425,7 @@ $.ajax({
 
   **更换镜像源后需要重启**
 
-*  进入Jenkins首页：http://IP地址，安装推荐插件（新手推荐）
+*  进入Jenkins首页：http://IP地址 ，安装推荐插件（新手推荐）
 
   > gitlab需要安装插件 gitlab plugin 和 gitlab hook plugin
 
