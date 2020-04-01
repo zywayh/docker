@@ -19,10 +19,10 @@ sed -i.bak '/swap/s/^/#/' /etc/fstab
 # 配置 ip_forward 转发
 echo "1" > /proc/sys/net/ipv4/ip_forward
 
-# 添加br_netfilter系统重启后失效，需要配置开机启动
+# 添加br_netfilter，系统重启后失效，需要配置开机启动
 modprobe br_netfilter
-
-
+chmod +x /etc/rc.d/rc.local
+echo "modprobe br_netfilter" >> /etc/rc.d/rc.local
 
 # 更新 yum 源
 cd /etc/yum.repos.d
@@ -47,18 +47,8 @@ cat <<EOF > /etc/docker/daemon.json
 {
 	"registry-mirrors": ["https://thu8zyqr.mirror.aliyuncs.com"], 
 	"exec-opts": ["native.cgroupdriver=systemd"]
-}
+} 
 EOF
-
-
-# 启动 docker 并设置开机启动(必须)
-systemctl enable docker && systemctl start docker
-
-# 安装 k8s 组件
-yum install -y kubelet-1.16.4 kubeadm-1.16.4 kubectl-1.16.4
-
-# 设置kubelet开机启动
-systemctl enable kubelet && systemctl start kubelet
 
 # 添加 kubectl 上下文到环境中
 cd
@@ -66,9 +56,17 @@ echo "source <(kubectl completion bash)" >> .bash_profile
 source .bash_profile
 
 # k8s 网络一般使用 flannel，该网络需要设置内核参数 bridge-nf-call-iptables=1 添加参数配置文件
-echo "net.bridge.bridge-nf-call-ip6tables = 1" >> /etc/sysctl.d/k8s.conf
-echo "net.bridge.bridge-nf-call-iptables = 1" >> /etc/sysctl.d/k8s.conf
+cat <<EOF > /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
 sysctl -p /etc/sysctl.d/k8s.conf
+
+# 安装 k8s 组件
+yum install -y kubelet-1.16.4 kubeadm-1.16.4 kubectl-1.16.4
+
+# 启动 docker 并设置开机启动(必须)，启动kubelet并设置开机启动
+systemctl enable docker && systemctl start docker && systemctl enable kubelet && systemctl start kubelet
 
 echo "k8s基础环境搭建完毕，如需启动master，请使用k8s_init_master应脚本安装。"
 echo "截止当前位置，k8s work节点完成，通过kubeadm join加入master节点"
