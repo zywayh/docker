@@ -1,5 +1,5 @@
 #!/bin/bash
-
+ 
 echo "docker linix contos7.* install init ----------------------------------------------------"
 systemctl start docker
 if [ $? -ne 0 ]; then 

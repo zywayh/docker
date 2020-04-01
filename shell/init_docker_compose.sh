@@ -1,5 +1,5 @@
 #!/bin/bash
-
+  
 docker-compose -h
 if [ $? -ne 0 ]; then 
   echo "安装docker-compose---------------------------------------------------------"
