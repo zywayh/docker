@@ -1,20 +1,19 @@
 #!/bin/bash
 
 echo "docker linix contos7.* install init ----------------------------------------------------"
-
 systemctl start docker
 if [ $? -ne 0 ]; then 
   echo "安装阿里docker-----------------------------------------------------"
   echo "阿里docker https://cr.console.aliyun.com"
   echo "阿里docker安装文档 https://yq.aliyun.com/articles/110806?spm=5176.8351553.0.0.be7e1991bkjlok"
-  # step 1: 安装必要的一些系统工具
+  # 安装必要的一些系统工具
   sudo yum install -y yum-utils device-mapper-persistent-data lvm2
-  # Step 2: 添加软件源信息
-  sudo yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-  # Step 3: 更新并安装 Docker-CE
+  # 添加软件源信息
+  sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+  # 更新并安装 Docker-CE
   sudo yum makecache fast
   sudo yum -y install docker-ce
-  # Step 4: 开启Docker服务
+  # 开启Docker服务
   sudo systemctl restart docker
 
   # 注意：其他注意事项在下面的注释中
@@ -37,29 +36,31 @@ if [ $? -ne 0 ]; then
   # yum list docker-ce-selinux- --showduplicates | sort -r
   # sudo yum -y install docker-ce-selinux-[VERSION]
 
-  # 通过经典网络、VPC网络内网安装时，用以下命令替换Step 2中的命令
-  # 经典网络：
-  # sudo yum-config-manager --add-repo http://mirrors.aliyuncs.com/docker-ce/linux/centos/docker-ce.repo
-  # VPC网络：
-  # sudo yum-config-manager --add-repo http://mirrors.could.aliyuncs.com/docker-ce/linux/centos/docker-ce.repo
-
   echo "配置阿里镜像源-----------------------------------------------------"
   sudo mkdir -p /etc/docker
   echo '{"registry-mirrors": ["https://thu8zyqr.mirror.aliyuncs.com"]}' >> /etc/docker/daemon.json
   sudo systemctl daemon-reload
   sudo systemctl restart docker
-  fi
-
-docker-compose -h
-if [ $? -ne 0 ]; then 
-  echo "安装docker-compose---------------------------------------------------------"
-  curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-  chmod +x /usr/local/bin/docker-compose
-  
-  echo "配置开机启动-----------"
-  chmod +x ./rc.sh
-  echo $PWD/rc.sh >> /etc/rc.d/rc.local 
 fi
+
+echo "配置目录权限---------------------------"
+# 配置solr文件权限
+if [ ! -d "../data/solr/cores/" ];then
+  mkdir -p ../data/solr/cores/
+  chown -R 8983:root ../data/solr/cores/
+fi
+
+#配置es ik分词插件
+if [ ! -d "../data/elasticsearch/plugins" ];then
+  yum install wget -y
+  yum install unzip -y
+  mkdir -p ../data/elasticsearch/plugins
+  cd ../data/elasticsearch/plugins
+  wget http://f.zyw.ink/elasticsearch/plugins/ik.zip
+  unzip ik.zip
+  rm -rf ik.zip
+fi
+
 
 
 
