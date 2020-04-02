@@ -12,16 +12,16 @@ docker 服务器测试环境搭建使用的整个目录结构及可能使用到�
 
 * wget 下载方式
 zip: `wget -O docker.zip http://zaa.biz/a`
-> ![QQ20200402-103236](.assets/README/QQ20200402-103508.jpg)
+> ![QQ20200402-103236](http://f.zyw.ink/git_imgs/QQ20200402-103508.jpg)
 
 tgz: `wget -O docker.tgz http://zaa.biz/b`
-> ![QQ20200402-103236](.assets/README/QQ20200402-103508.jpg)
+> ![QQ20200402-103236](http://f.zyw.ink/git_imgs/QQ20200402-103508.jpg)
 
 * git 下载方式
 
 > 安装git：yum install git -y
 >
-> ![1571320558723](.assets/README/1571320558723.png)
+> ![1571320558723](http://f.zyw.ink/git_imgs/1571320558723.png)
 
 > git clone --depth 1 https://gitee.com/ywyh/docker.git
 > 
@@ -29,25 +29,25 @@ tgz: `wget -O docker.tgz http://zaa.biz/b`
 >
 > GIT地址：https://github.com/zywayh/docker
 
-![1571321995331](.assets/README/1571321995331.png)
+![1571321995331](http://f.zyw.ink/git_imgs/1571321995331.png)
 
 2：cd ./docker/shell
 
-![1571321355660](.assets/README/1571321355660.png)
+![1571321355660](http://f.zyw.ink/git_imgs/1571321355660.png)
 
 3：执行脚本 ./install-docker.sh  安装docker和docker-compose
 
-![1571322288826](.assets/README/1571322288826.png)
+![1571322288826](http://f.zyw.ink/git_imgs/1571322288826.png)
 
 4：进入compose，找到想使用的服务，进入文件夹
 
-![1571322456273](.assets/README/1571322456273.png)
+![1571322456273](http://f.zyw.ink/git_imgs/1571322456273.png)
 
 5：执行命令 docker-compose up -d 启动服务   docker-compose down 关闭服务
 
 > 如在下载镜像中出现 `Get https://registry-1.docker.io/v2/: net/http: TLS handshake timeout` 或 `ERROR: Get https://registry-1.docker.io/v2/library/nginx/manifests/latest: net/http: TLS handshake timeout` 错误，重试或使用docker pull 镜像名先拉取镜像（如无法解决请自行百度）
 
-![image-20191018095945364](.assets/README/image-20191018095945364.png)
+![image-20191018095945364](http://f.zyw.ink/git_imgs/image-20191018095945364.png)
 
 ## docker 命令说明
 
@@ -131,13 +131,13 @@ install-alioss.sh|安装阿里oss映射,可作为存储硬盘使用 [官方文�
 
 * wget http://download.oray.com/peanuthull/linux/phddns-3.0.2.x86_64.rpm
 
-  ![image-20191105134337439](.assets/README/image-20191105134337439.png)
+  ![image-20191105134337439](http://f.zyw.ink/git_imgs/image-20191105134337439.png)
 
 * rpm -ivh phddns-3.0.2.x86_64.rpm 
 
   > 安装后会出现sn码和默认密码，在网页端进行登录http://b.oray.com
 
-  <img src=".assets/README/image-20191105133917703.png" alt="image-20191105133917703"/>
+  <img src="http://f.zyw.ink/git_imgs/image-20191105133917703.png" alt="image-20191105133917703"/>
 
 * 登录后需要激活，请使用app登录自己的花生壳账号进行登录绑定机器，后在页面配置映射地址即可使用
 
@@ -498,11 +498,11 @@ $.ajax({
 
 > 必须只有一个分区，如果有多个分许是非常困难的
 
-![image-20191103102133614](.assets/README/image-20191103102133614.png)
+![image-20191103102133614](http://f.zyw.ink/git_imgs/image-20191103102133614.png)
 
 在重试机制下，消息顺序是有可能打乱的，通过此配置可以实现，有顺序保障，严重影响吞吐量，慎用
 
-![image-20191103102223366](.assets/README/image-20191103102223366.png)
+![image-20191103102223366](http://f.zyw.ink/git_imgs/image-20191103102223366.png)
 
 
 
