@@ -15,7 +15,7 @@ zip: `wget -O docker.zip http://zaa.biz/a`
 > ![QQ20200402-103236](.assets/README/QQ20200402-103508.jpg)
 
 tgz: `wget -O docker.tgz http://zaa.biz/b`
-> ![QQ20200402-103236](.assets/README/QQ20200402-104005.jpg)
+> ![QQ20200402-103236](.assets/README/QQ20200402-103508.jpg)
 
 * git 下载方式
 
@@ -23,11 +23,11 @@ tgz: `wget -O docker.tgz http://zaa.biz/b`
 >
 > ![1571320558723](.assets/README/1571320558723.png)
 
-> git clone --depth 1 https://github.com/zywayh/docker.git
+> git clone --depth 1 https://gitee.com/ywyh/docker.git
 > 
-> 码云地址： https://gitee.com/ywyh/docker 
+> 码云地址：https://gitee.com/ywyh/docker
 >
-> 私有地址：http://git.healthtoo.cn/ywyh/docker
+> GIT地址：https://github.com/zywayh/docker
 
 ![1571321995331](.assets/README/1571321995331.png)
 
