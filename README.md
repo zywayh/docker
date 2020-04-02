@@ -8,12 +8,23 @@ docker 服务器测试环境搭建使用的整个目录结构及可能使用到�
 
 ## 快速使用
 
+1：下载代码
+
+* wget 下载方式
+zip: `wget -O docker.zip http://zaa.biz/a`
+> ![QQ20200402-103236](.assets/README/QQ20200402-103508.jpg)
+
+tgz: `wget -O docker.tgz http://zaa.biz/b`
+> ![QQ20200402-103236](.assets/README/QQ20200402-104005.jpg)
+
+* git 下载方式
+
 > 安装git：yum install git -y
 >
 > ![1571320558723](.assets/README/1571320558723.png)
 
-1：git clone --depth 1 https://github.com/zywayh/docker.git
-
+> git clone --depth 1 https://github.com/zywayh/docker.git
+> 
 > 码云地址： https://gitee.com/ywyh/docker 
 >
 > 私有地址：http://git.healthtoo.cn/ywyh/docker
