@@ -4,6 +4,9 @@
 # docker: 19.03.5
 # kube: 1.16.4
 
+
+echo "初始化安装k8s，本次安装使用1.16.4版本，对应master-ha固定写死的版本。如需尝试其他版本请修改对应的脚本"
+
 # 关闭 selinux
 setenforce 0
 mv /etc/sysconfig/selinux /etc/sysconfig/selinux.bak
