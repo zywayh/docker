@@ -1,0 +1,45 @@
+version: '3'
+services:
+  mysql_master1:
+    image: mysql:8.0.15
+    container_name: mysql_master1
+    volumes:
+      - ../../conf/mysql-ha/master1/conf:/etc/mysql/conf.d
+      - ../../data/mysql-ha/master1/data:/var/lib/mysql
+      - ../../data/mysql-ha/master1/log:/var/log/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=root
+    command: --default-authentication-plugin=mysql_native_password --server-id=100
+  mysql_master2:
+    image: mysql:8.0.15
+    container_name: mysql_master2
+    volumes:
+      - ../../conf/mysql-ha/master2/conf:/etc/mysql/conf.d
+      - ../../data/mysql-ha/master2/data:/var/lib/mysql
+      - ../../data/mysql-ha/master2/log:/var/log/mysql
+    ports:
+      - 3307:3306
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=root
+    command: --default-authentication-plugin=mysql_native_password --server-id=200
+  mysql_master3:
+    image: mysql:8.0.15
+    container_name: mysql_master3
+    volumes:
+      - ../../conf/mysql-ha/master3/conf:/etc/mysql/conf.d
+      - ../../data/mysql-ha/master3/data:/var/lib/mysql
+      - ../../data/mysql-ha/master3/log:/var/log/mysql
+    ports:
+      - 3308:3306
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=root
+    command: --default-authentication-plugin=mysql_native_password --server-id=300
+
+
+
+

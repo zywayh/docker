@@ -505,7 +505,56 @@ $.ajax({
 ![image-20191103102223366](http://f.zyw.ink/git_imgs/image-20191103102223366.png)
 
 
+## mysql 多主搭建（三主，更多主操作相同）
 
+### master容器需要做的操作
+
+参考文档 [使用docker构建双主mysql](https://www.cnblogs.com/huangqingshi/p/12593395.html?spm=a2c4e.10696291.0.0.752b19a4bq5Cii)
+
+> 基于 /docker/compose/mysql-ha/docker-compose.yml
+>
+> 一个slave无法同步多个master，所以如果有三个mysql，那么同步关系是：2同步1，3同步2，1同步3 环形
+>
+> 配置时，请梳理清楚同步关系
+>
+> 主从配置，比较简单，值需要配置个slave，就行了，2同步1，其他不需要操作，设置只读请自行查找文档
+
+```shell
+# 进入容器
+docker exec -ti mysql_master1 bash
+
+# 登录mysql
+mysql -uroot -proot
+
+# 开放权限
+GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'root'@'%';
+
+# 查看master的日志文件即位置
+show master status;
+
+```
+
+### slave容器需要做的操作
+
+```shell
+# 配置同步
+# master_host：目标主机地址
+# master_port：目标主机端口
+# master_user，master_password：目标主机用户名密码
+# master_log_file，master_log_pos：通过`show master status;`查询出来的信息
+change master to master_host='mysql_master2',master_port=3306, master_user='root',master_password='root',master_log_file='mysql-bin.000003',master_log_pos=395;
+
+# 开启同步线程
+start slave;
+
+# 查看是否成功，如果成功会显示：
+# Slave_IO_Running: Yes  # 如果为NO，请检查网络或者账号密码端口号
+# Slave_SQL_Running: Yes
+show slave status \G;
+
+# 停止同步
+# stop slave;
+```
 
 
 
