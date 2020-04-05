@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! $# -gt 2 ];then
+if [ ! $# -gt 1 ];then
 	echo "至少需要2个参数，请完善参数"
 	echo "参数错误 <vip> <priority>"
 else

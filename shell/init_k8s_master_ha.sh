@@ -7,7 +7,7 @@ if [ $? -ne 0 ]; then
 else
 
 
-if [ ! $# -gt 3 ];then
+if [ ! $# -gt 2 ];then
 	echo "至少需要3个参数，请完善参数"
 	echo "参数错误 <vip> <master1ip> <master2ip> [master3ip ....]，将多个master参数传递过来"
 else
