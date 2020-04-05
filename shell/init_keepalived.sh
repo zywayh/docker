@@ -47,4 +47,13 @@ echo "keepalived安装完成，启动完成，配置开机启动完成，设置�
 echo "检查执行结果"
 ip a | grep $vip
 
+echo "nameserver 114.114.114.114" >>  /etc/resolv.conf 
+echo "nameserver 8.8.8.8" >>  /etc/resolv.conf 
+echo "nameserver 8.8.4.4" >>  /etc/resolv.conf 
+
 fi
+
+
+
+
+
