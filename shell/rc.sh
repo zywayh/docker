@@ -4,3 +4,5 @@
 # chmod +x /etc/rc.d/rc.local
 # echo $PWD/rc.sh >> /etc/rc.d/rc.local 
 
+echo $(date "+%Y-%m-%d %H:%M:%S") - 开机启动docker >> $PWD/rc.log
+

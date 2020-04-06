@@ -43,17 +43,15 @@ EOF
 
 # systemctl enable keepalived.service && systemctl start keepalived.service
 
-echo "systemctl restart keepalived && echo $(date "+%Y-%m-%d %H:%M:%S") -> 开机启动keepalived >> $/PWD/rc.log" >> rc.sh 
-# echo 'echo "nameserver 114.114.114.114" >> /etc/resolv.conf && echo  $(date "+%Y-%m-%d %H:%M:%S")  -> 开机配置DNS >> rc.log'  >> rc.sh 
+echo "systemctl restart keepalived && echo 启动keepalived >> $/PWD/rc.log" >> rc.sh 
+echo "echo nameserver 114.114.114.114 >> /etc/resolv.conf && echo 配置DNS >> $/PWD/rc.log"  >> rc.sh 
+echo "echo nameserver 8.8.8.8 >> /etc/resolv.conf && echo 配置DNS >> $/PWD/rc.log"  >> rc.sh 
+echo "echo nameserver 8.8.4.4 >> /etc/resolv.conf && echo 配置DNS >> $/PWD/rc.log"  >> rc.sh 
 
 
 echo "keepalived安装完成，启动完成，配置开机启动完成，设置的VIP为${vip}"
 echo "检查执行结果"
 ip a | grep $vip
-
-echo "nameserver 114.114.114.114" >>  /etc/resolv.conf 
-echo "nameserver 8.8.8.8" >>  /etc/resolv.conf 
-echo "nameserver 8.8.4.4" >>  /etc/resolv.conf 
 
 fi
 

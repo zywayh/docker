@@ -71,7 +71,7 @@ yum install -y kubelet-1.16.4 kubeadm-1.16.4 kubectl-1.16.4
 # 配置kubelet并设置开机启动
 # systemctl enable kubelet && systemctl start kubelet
 # 配置docker开机启动
-echo "systemctl restart kubelet && echo $(date "+%Y-%m-%d %H:%M:%S") -> 开机启动kubelet >> $PWD/rc.log" >> rc.sh 
+echo "systemctl restart kubelet && echo 启动kubelet >> $PWD/rc.log" >> rc.sh 
 
 
 echo "k8s基础环境搭建完毕，如需启动master，请使用k8s_init_master应脚本安装。"
