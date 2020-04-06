@@ -16,7 +16,7 @@ else
 systemctl status haproxy.service
 if [ $? -ne 0 ]; then
 	yum install -y haproxy
-	echo "systemctl restart haproxy && echo $(date "+%Y-%m-%d %H:%M:%S") -> 开机启动haproxy >> rc.log" >> rc.sh 
+	echo "systemctl restart haproxy && echo $(date "+%Y-%m-%d %H:%M:%S") -> 开机启动haproxy >> $PWD/rc.log" >> rc.sh 
 fi
 
 rm -rf /etc/haproxy/haproxy.cfg

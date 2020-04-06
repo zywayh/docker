@@ -43,7 +43,7 @@ EOF
 
 # systemctl enable keepalived.service && systemctl start keepalived.service
 
-echo "systemctl restart keepalived && echo $(date "+%Y-%m-%d %H:%M:%S") -> 开机启动keepalived >> rc.log" >> rc.sh 
+echo "systemctl restart keepalived && echo $(date "+%Y-%m-%d %H:%M:%S") -> 开机启动keepalived >> $/PWD/rc.log" >> rc.sh 
 # echo 'echo "nameserver 114.114.114.114" >> /etc/resolv.conf && echo  $(date "+%Y-%m-%d %H:%M:%S")  -> 开机配置DNS >> rc.log'  >> rc.sh 
 
 
