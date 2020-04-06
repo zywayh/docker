@@ -68,8 +68,11 @@ sysctl -p /etc/sysctl.d/k8s.conf
 # 安装 k8s 组件
 yum install -y kubelet-1.16.4 kubeadm-1.16.4 kubectl-1.16.4
 
-# 启动 docker 并设置开机启动(必须)，启动kubelet并设置开机启动
-systemctl enable docker && systemctl start docker && systemctl enable kubelet && systemctl start kubelet
+# 配置kubelet并设置开机启动
+# systemctl enable kubelet && systemctl start kubelet
+# 配置docker开机启动
+echo "systemctl restart kubelet && echo $(date "+%Y-%m-%d %H:%M:%S") -> 开机启动kubelet >> rc.log" >> rc.sh 
+
 
 echo "k8s基础环境搭建完毕，如需启动master，请使用k8s_init_master应脚本安装。"
 echo "截止当前位置，k8s work节点完成，通过kubeadm join加入master节点"

@@ -41,7 +41,11 @@ vrrp_instance VI_1 {
 }
 EOF
 
-systemctl enable keepalived.service && systemctl start keepalived.service
+# systemctl enable keepalived.service && systemctl start keepalived.service
+
+echo "systemctl restart keepalived && echo $(date "+%Y-%m-%d %H:%M:%S") -> 开机启动keepalived >> rc.log" >> rc.sh 
+# echo 'echo "nameserver 114.114.114.114" >> /etc/resolv.conf && echo  $(date "+%Y-%m-%d %H:%M:%S")  -> 开机配置DNS >> rc.log'  >> rc.sh 
+
 
 echo "keepalived安装完成，启动完成，配置开机启动完成，设置的VIP为${vip}"
 echo "检查执行结果"

@@ -15,7 +15,8 @@ else
 # 安装haproxy负载均衡
 systemctl status haproxy.service
 if [ $? -ne 0 ]; then
-	yum install -y haproxy && systemctl enable haproxy.service
+	yum install -y haproxy
+	echo "systemctl restart haproxy && echo $(date "+%Y-%m-%d %H:%M:%S") -> 开机启动haproxy >> rc.log" >> rc.sh 
 fi
 
 rm -rf /etc/haproxy/haproxy.cfg
@@ -54,7 +55,7 @@ do
     let index+=1
 done
 
-systemctl restart haproxy.service
+systemctl restart haproxy
 
 
 vip=$1

@@ -61,6 +61,12 @@ if [ ! -d "../data/elasticsearch/plugins" ];then
   rm -rf ik.zip
 fi
 
+# 配置开机启动脚本
+chmod +x /etc/rc.d/rc.local
+echo $PWD/rc.sh >> /etc/rc.d/rc.local 
+
+# 配置docker开机启动
+echo "systemctl restart docker && echo $(date "+%Y-%m-%d %H:%M:%S") -> 开机启动docker >> rc.log" >> rc.sh 
 
 
 
