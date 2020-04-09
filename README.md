@@ -557,6 +557,10 @@ show slave status \G;
 ```
 
 
+## linux 挂在smb
+yum install cifs-utils -y
+mount -t cifs -o username=linux,password=123123 //192.168.1.117/linux /nas
+
 
 
 
