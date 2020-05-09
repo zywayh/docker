@@ -13,7 +13,7 @@ if [ $# -ge 4 ];then
 	sqlName=$databaseName.sql
 	# 备份命令
 	mkdir -p ./log
-	echo "\n备份时间："$(date +%Y%m%d%H) >> ./log/mysql_bak.log
+	echo "\n备份时间：$(date +%Y%m%d%H%M%S)，备份数据库：$databaseName" >> ./log/mysql_bak.log
 	docker exec $imageName sh -c '/usr/bin/mysqldump --set-gtid-purged=OFF -uroot -p'$password' '$databaseName' >/bak/'$sqlName 2>> ./log/mysql_bak.log
 	if [ ! $? -ne 0 ]; then 
 		# 判断备份是否成功
