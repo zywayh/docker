@@ -6,7 +6,7 @@ services:
     volumes:
       - ../../conf/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
       - ../../conf/nginx/conf/conf.d:/etc/nginx/conf.d
-      - ../../data/certbot/letsencrypt/archive:/ssl
+      - ../../data/certbot/letsencrypt:/certbot/letsencrypt
       - ../../html:/html:ro
     ports:
       - 80:80
