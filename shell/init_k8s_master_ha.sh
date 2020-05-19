@@ -7,15 +7,16 @@ if [ $? -ne 0 ]; then
 else
 
 
-if [ ! $# -gt 3 ];then
+if [ ! $# -gt 1 ];then
 	echo "至少需要3个参数，请完善参数"
-	echo "参数错误 <vip> <master1ip> <master2ip> [master3ip ....]，将多个master参数传递过来"
+	echo "参数错误 <vip> <master1ip> [master2ip ....]，将多个master参数传递过来"
 else
 
 # 安装haproxy负载均衡
 systemctl status haproxy.service
 if [ $? -ne 0 ]; then
-	yum install -y haproxy && systemctl enable haproxy.service
+	yum install -y haproxy
+	echo "systemctl restart haproxy && echo 启动haproxy >> $PWD/rc.log" >> rc.sh 
 fi
 
 rm -rf /etc/haproxy/haproxy.cfg
@@ -48,13 +49,13 @@ for i in $*        #在$*中遍历参数，此时每个参数都是独立的，�
 do
   if [[ $index -ne 1 ]]  
 	then  
-		echo "server apiserver1 $i:6443 check port 6443 inter 5000 fall 5" >> /etc/haproxy/haproxy.cfg 
+		echo "server apiserver$index $i:6443 check port 6443 inter 5000 fall 5" >> /etc/haproxy/haproxy.cfg 
 		echo "添加master服务器，ip：$i"
 	fi 
     let index+=1
 done
 
-systemctl restart haproxy.service
+systemctl restart haproxy
 
 
 vip=$1

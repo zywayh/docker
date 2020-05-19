@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! $# -gt 2 ];then
+if [ ! $# -gt 1 ];then
 	echo "至少需要2个参数，请完善参数"
 	echo "参数错误 <vip> <priority>"
 else
@@ -41,10 +41,21 @@ vrrp_instance VI_1 {
 }
 EOF
 
-systemctl enable keepalived.service && systemctl start keepalived.service
+# systemctl enable keepalived.service && systemctl start keepalived.service
+
+echo "systemctl restart keepalived && echo 启动keepalived >> $/PWD/rc.log" >> rc.sh 
+echo "echo nameserver 114.114.114.114 >> /etc/resolv.conf && echo 配置DNS >> $/PWD/rc.log"  >> rc.sh 
+echo "echo nameserver 8.8.8.8 >> /etc/resolv.conf && echo 配置DNS >> $/PWD/rc.log"  >> rc.sh 
+echo "echo nameserver 8.8.4.4 >> /etc/resolv.conf && echo 配置DNS >> $/PWD/rc.log"  >> rc.sh 
+
 
 echo "keepalived安装完成，启动完成，配置开机启动完成，设置的VIP为${vip}"
 echo "检查执行结果"
 ip a | grep $vip
 
 fi
+
+
+
+
+
